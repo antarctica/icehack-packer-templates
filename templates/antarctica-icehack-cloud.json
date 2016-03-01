@@ -13,7 +13,7 @@
       "type": "digitalocean",
       "image": "16035420",
       "region": "lon1",
-      "size": "1024mb",
+      "size": "1gb",
       "droplet_name": "{{user `hostname`}}",
       "private_networking": true,
       "snapshot_name": "{{user `atlas_artifact`}}-{{user `release_version`}}"

@@ -54,12 +54,6 @@
         "TEMPLATE_VERSION={{user `release_version`}}"
       ],
       "scripts": [
-        "provisioning/scripts/ubuntu/update-cloud.sh",
-        "provisioning/scripts/ubuntu/conventional-users.sh",
-        "provisioning/scripts/common/sshd.sh",
-        "provisioning/scripts/ubuntu/ufw.sh",
-        "provisioning/scripts/ubuntu/sudoers.sh",
-        "provisioning/scripts/ubuntu/locale.sh",
         "provisioning/scripts/common/metadata.sh",
         "provisioning/scripts/ubuntu/cleanup.sh"
       ]

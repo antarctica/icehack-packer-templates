@@ -4,16 +4,16 @@
 
     "hostname": "cloud",
 
-    "artefact": "antarctica-trusty",
-    "release_version": "3.1.0",
-    "atlas_artifact": "antarctica/trusty"
+    "artefact": "antarctica-icehack",
+    "release_version": "0.0.0",
+    "atlas_artifact": "antarctica/icehack"
   },
   "builders": [
     {
       "type": "digitalocean",
-      "image": "ubuntu-14-04-x64",
+      "image": "16035420",
       "region": "lon1",
-      "size": "512mb",
+      "size": "1024mb",
       "droplet_name": "{{user `hostname`}}",
       "private_networking": true,
       "snapshot_name": "{{user `atlas_artifact`}}-{{user `release_version`}}"
@@ -22,7 +22,7 @@
       "type": "amazon-ebs",
       "communicator": "ssh",
       "ssh_pty": true,
-      "source_ami": "ami-47a23a30",
+      "source_ami": "ami-c7229db4",
       "region": "eu-west-1",
       "instance_type": "t2.micro",
       "ssh_username": "ubuntu",

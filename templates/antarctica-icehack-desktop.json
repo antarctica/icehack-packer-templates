@@ -6,16 +6,16 @@
 
     "distro": "ubuntu-14.04-amd64",
     "disk_size": "40960",
-    "io_ram_size": "384",
+    "io_ram_size": "1024",
 
     "hostname": "vagrant",
 
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
 
-    "artefact": "antarctica-trusty",
+    "artefact": "antarctica-icehack",
     "release_version": "0.0.0",
-    "atlas_artifact": "antarctica/trusty"
+    "atlas_artifact": "antarctica/icehack"
   },
   "builders": [
     {

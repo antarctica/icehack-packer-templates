@@ -23,7 +23,7 @@ confirm () {
 
 # Introduction
 printf "\n"
-printf "${FGBlue}BAS Packer VM Templates - Standard build script${FGreset}\n"
+printf "${FGBlue}Icehack Packer VM Templates - Standard build script${FGreset}\n"
 printf "\n"
 printf "  This script will:\n"
 printf "  * Check you have required software on your local machine\n"
@@ -94,15 +94,12 @@ printf "\n"
 
 printf " Template versions are needed for building, you will need to workout the new version of each template:\n"
 printf "\n"
-read -r -p "? > Version for the antarctica/trusty template (e.g. 1.2.3) " VAR_antarctica_trusty_version
-read -r -p "? > Version for the antarctica/centos7 template (e.g. 1.2.3) " VAR_antarctica_centos7_version
+read -r -p "? > Version for the antarctica/icehack template (e.g. 1.2.3) " VAR_antarctica_icehack_version
 
 printf "\n"
 printf "  This script will now call packer to build *ALL* VM templates - specifically it will call:\n"
-printf "  $ packer build -var 'release_version=${VAR_antarctica_trusty_version}' templates/antarctica-trusty-desktop.json\n"
-printf "  $ packer build -var 'release_version=${VAR_antarctica_trusty_version}' templates/antarctica-trusty-cloud.json\n"
-printf "  $ packer build -var 'release_version=${VAR_antarctica_centos7_version}' templates/antarctica-centos7-desktop.json\n"
-printf "  $ packer build -var 'release_version=${VAR_antarctica_centos7_version}' templates/antarctica-centos7-cloud.json\n"
+printf "  $ packer build -var 'release_version=${VAR_antarctica_icehack_version}' templates/antarctica-icehack-desktop.json\n"
+printf "  $ packer build -var 'release_version=${VAR_antarctica_icehack_version}' templates/antarctica-icehack-cloud.json\n"
 
 printf "\n"
 printf "${FGYellow}For safety, you need to confirm this action${FGreset}\n"
@@ -111,28 +108,16 @@ confirm
 printf "\n  Sit tight this will take a while - Packer's output will follow...\n"
 
 printf "\n"
-printf "  Processing the 'antarctica/trusty' (desktop) template:\n"
-packer build -var "release_version=${VAR_antarctica_trusty_version}" templates/antarctica-trusty-desktop.json
+printf "  Processing the 'antarctica/icehack' (desktop) template:\n"
+packer build -var "release_version=${VAR_antarctica_icehack_version}" templates/antarctica-icehack-desktop.json
 printf "\n"
-printf "${FGGreen}<>${FGreset} 'antarctica/trusty' (desktop) built successfully\n"
+printf "${FGGreen}<>${FGreset} 'antarctica/icehack' (desktop) built successfully\n"
 
 printf "\n"
-printf "  Processing the 'antarctica/trusty' (cloud) template:\n"
-packer build -var "release_version=${VAR_antarctica_trusty_version}" templates/antarctica-trusty-cloud.json
+printf "  Processing the 'antarctica/icehack' (cloud) template:\n"
+packer build -var "release_version=${VAR_antarctica_icehack_version}" templates/antarctica-icehack-cloud.json
 printf "\n"
-printf "${FGGreen}<>${FGreset} 'antarctica/trusty' (cloud) built successfully\n"
-
-printf "\n"
-printf "  Processing the 'antarctica/centos7' (desktop) template:\n"
-packer build  -var "release_version=${VAR_antarctica_centos7_version}" templates/antarctica-centos7-desktop.json
-printf "\n"
-printf "${FGGreen}<>${FGreset} 'antarctica/centos7' (desktop) built successfully\n"
-
-printf "\n"
-printf "  Processing the 'antarctica/centos7' (cloud) template:\n"
-packer build -var "release_version=${VAR_antarctica_centos7_version}" templates/antarctica-centos7-cloud.json
-printf "\n"
-printf "${FGGreen}<>${FGreset} 'antarctica/centos7' (cloud) built successfully\n"
+printf "${FGGreen}<>${FGreset} 'antarctica/icehack' (cloud) built successfully\n"
 
 printf "\n"
 printf "${FGGreen}Builds Complete${FGreset}\n"
@@ -148,31 +133,16 @@ printf "  1. Converting the VMX to a OVF file\n"
 printf "  2. Verifying the OVA file (which has since been generated from the OVF file) is valid\n"
 
 printf "\n"
-printf "  Processing the 'antarctica/trusty' template:\n"
-mkdir -p artefacts/ovas/antarctica-trusty-vmware-iso/scratch
-ovftool artefacts/ovas/antarctica-trusty-vmware-iso/vmware.vmx artefacts/ovas/antarctica-trusty-vmware-iso/scratch/vmware.ovf
-cd artefacts/ovas/antarctica-trusty-vmware-iso/scratch
+printf "  Processing the 'antarctica/icehack' template:\n"
+mkdir -p artefacts/ovas/antarctica-icehack-vmware-iso/scratch
+ovftool artefacts/ovas/antarctica-icehack-vmware-iso/vmware.vmx artefacts/ovas/antarctica-icehack-vmware-iso/scratch/vmware.ovf
+cd artefacts/ovas/antarctica-icehack-vmware-iso/scratch
 tar cf ../vmware.ova vmware.ovf vmware.mf vmware-disk1.vmdk
 cd ..
 rm -rf scratch
 ovftool --schemaValidate vmware.ova
 printf "\n"
-printf "${FGGreen}<>${FGreset} 'antarctica/trusty' converted successfully\n"
-
-# # Reset working path
-cd ../../../
-
-printf "\n"
-printf "  Processing the 'antarctica/centos7' template:\n"
-mkdir -p artefacts/ovas/antarctica-centos7-vmware-iso/scratch
-ovftool artefacts/ovas/antarctica-centos7-vmware-iso/vmware.vmx artefacts/ovas/antarctica-centos7-vmware-iso/scratch/vmware.ovf
-cd artefacts/ovas/antarctica-centos7-vmware-iso/scratch
-tar cf ../vmware.ova vmware.ovf vmware.mf vmware-disk1.vmdk
-cd ..
-rm -rf scratch
-ovftool --schemaValidate vmware.ova
-printf "\n"
-printf "${FGGreen}<>${FGreset} 'antarctica/centos7' converted successfully\n"
+printf "${FGGreen}<>${FGreset} 'antarctica/icehack' converted successfully\n"
 
 # # Reset working path
 cd ../../../
@@ -184,10 +154,8 @@ printf "\n"
 printf "${FGBlue}== Generate artefact checksums${FGreset}\n"
 
 printf "\n"
-openssl sha1 artefacts/vagrant-base-boxes/base-boxes/antarctica-trusty/vmware.box
-openssl sha1 artefacts/vagrant-base-boxes/base-boxes/antarctica-trusty/virtualbox.box
-openssl sha1 artefacts/vagrant-base-boxes/base-boxes/antarctica-centos7/vmware.box
-openssl sha1 artefacts/vagrant-base-boxes/base-boxes/antarctica-centos7/virtualbox.box
+openssl sha1 artefacts/vagrant-base-boxes/base-boxes/antarctica-icehack/vmware.box
+openssl sha1 artefacts/vagrant-base-boxes/base-boxes/antarctica-icehack/virtualbox.box
 
 printf "\n"
 printf "${FGGreen}Checksums Complete${FGreset}\n"
@@ -197,67 +165,38 @@ printf "${FGBlue}== Releasing artefacts${FGreset}\n"
 
 printf "\n"
 printf "  This script will now call (cyber)duck to distribute artefacts to the BAS SAN and AWS S3 for release - specifically it will call:\n"
-printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/vagrant/baseboxes/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/vmware.box artefacts/vagrant-base-boxes/base-boxes/antarctica-trusty/vmware.box\n"
-printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/vagrant/baseboxes/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/virtualbox.box artefacts/vagrant-base-boxes/base-boxes/antarctica-trusty/virtualbox.box\n"
-printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/ovas/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/vmware.ova artefacts/ovas/antarctica-trusty-vmware-iso/vmware.ova\n"
-printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/ovas/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/virtualbox.ova artefacts/ovas/antarctica-trusty-virtualbox-iso/virtualbox.ova\n"
+printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/environment/vagrant/baseboxes/${VAR_antarctica_icehack_version}/vmware.box artefacts/vagrant-base-boxes/base-boxes/antarctica-icehack/vmware.box\n"
+printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/environment/vagrant/baseboxes/${VAR_antarctica_icehack_version}/virtualbox.box artefacts/vagrant-base-boxes/base-boxes/antarctica-icehack/virtualbox.box\n"
+printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/ovas/ubuntu/14.04/amd64/${VAR_antarctica_icehack_version}/vmware.ova artefacts/ovas/antarctica-icehack-vmware-iso/vmware.ova\n"
+printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/ovas/ubuntu/14.04/amd64/${VAR_antarctica_icehack_version}/virtualbox.ova artefacts/ovas/antarctica-icehack-virtualbox-iso/virtualbox.ova\n"
 printf "\n"
-printf "  $ ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/vagrant/baseboxes/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/\n"
-printf "  $ ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/ovas/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/\n"
-printf "  $ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/vagrant/baseboxes/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/vmware.box artefacts/vagrant-base-boxes/base-boxes/antarctica-trusty/vmware.box\n"
-printf "  $ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/vagrant/baseboxes/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/virtualbox.box artefacts/vagrant-base-boxes/base-boxes/antarctica-trusty/virtualbox.box\n"
-printf "  $ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/ovas/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/vmware.ova artefacts/ovas/antarctica-trusty-vmware-iso/vmware.ova\n"
-printf "  $ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/ovas/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/virtualbox.ova artefacts/ovas/antarctica-trusty-virtualbox-iso/virtualbox.ova\n"
+printf "  $ ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/scratch/icehack/environment/vagrant/baseboxes/${VAR_antarctica_icehack_version}/\n"
+printf "  $ ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/scratch/icehack/environment/ovas/${VAR_antarctica_icehack_version}/\n"
+printf "  $ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/scratch/icehack/environment/vagrant/baseboxes/${VAR_antarctica_icehack_version}/vmware.box artefacts/vagrant-base-boxes/base-boxes/antarctica-trusty/vmware.box\n"
+printf "  $ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/scratch/icehack/environment/vagrant/baseboxes/${VAR_antarctica_icehack_version}/virtualbox.box artefacts/vagrant-base-boxes/base-boxes/antarctica-trusty/virtualbox.box\n"
+printf "  $ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/scratch/icehack/environment/ovas/${VAR_antarctica_icehack_version}/vmware.ova artefacts/ovas/antarctica-icehack-vmware-iso/vmware.ova\n"
+printf "  $ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/scratch/icehack/environment/ovas/${VAR_antarctica_icehack_version}/virtualbox.ova artefacts/ovas/antarctica-icehack-virtualbox-iso/virtualbox.ova\n"
 printf "\n"
-printf "\n"
-printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/vagrant/baseboxes/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/vmware.box artefacts/vagrant-base-boxes/base-boxes/antarctica-centos7/vmware.box\n"
-printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/vagrant/baseboxes/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/virtualbox.box artefacts/vagrant-base-boxes/base-boxes/antarctica-centos7/virtualbox.box\n"
-printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/ovas/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/vmware.ova artefacts/ovas/antarctica-centos7-vmware-iso/vmware.ova\n"
-printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/ovas/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/virtualbox.ova artefacts/ovas/antarctica-centos7-virtualbox-iso/virtualbox.ova\n"
-printf "\n"
-printf "  $ ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/vagrant/baseboxes/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/\n"
-printf "  $ ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/ovas/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/\n"
-printf "  $ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/vagrant/baseboxes/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/vmware.box artefacts/vagrant-base-boxes/base-boxes/antarctica-centos7/vmware.box\n"
-printf "  $ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/vagrant/baseboxes/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/virtualbox.box artefacts/vagrant-base-boxes/base-boxes/antarctica-centos7/virtualbox.box\n"
-printf "  $ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/ovas/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/vmware.ova artefacts/ovas/antarctica-centos7-vmware-iso/vmware.ova\n"
-printf "  $ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/ovas/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/virtualbox.ova artefacts/ovas/antarctica-centos7-virtualbox-iso/virtualbox.ova\n"
 
 printf "\n"
 printf "${FGYellow}For safety, you need to confirm this action${FGreset}\n"
 confirm
 
 printf "\n"
-duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/vagrant/baseboxes/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/vmware.box artefacts/vagrant-base-boxes/base-boxes/antarctica-trusty/vmware.box
-duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/vagrant/baseboxes/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/virtualbox.box artefacts/vagrant-base-boxes/base-boxes/antarctica-trusty/virtualbox.box
-duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/ovas/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/vmware.ova artefacts/ovas/antarctica-trusty-vmware-iso/vmware.ova
-duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/ovas/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/virtualbox.ova artefacts/ovas/antarctica-trusty-virtualbox-iso/virtualbox.ova
-printf "${FGGreen}<>${FGreset} 'antarctica/trusty' artefacts copied to AWS S3 successfully\n"
+duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/environment/vagrant/baseboxes/${VAR_antarctica_icehack_version}/vmware.box artefacts/vagrant-base-boxes/base-boxes/antarctica-icehack/vmware.box
+duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/environment/vagrant/baseboxes/${VAR_antarctica_icehack_version}/virtualbox.box artefacts/vagrant-base-boxes/base-boxes/antarctica-icehack/virtualbox.box
+duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/ovas/ubuntu/14.04/amd64/${VAR_antarctica_icehack_version}/vmware.ova artefacts/ovas/antarctica-icehack-vmware-iso/vmware.ova
+duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/ovas/ubuntu/14.04/amd64/${VAR_antarctica_icehack_version}/virtualbox.ova artefacts/ovas/antarctica-icehack-virtualbox-iso/virtualbox.ova
+printf "${FGGreen}<>${FGreset} 'antarctica/icehack' artefacts copied to AWS S3 successfully\n"
 
 printf "\n"
-ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/vagrant/baseboxes/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/
-ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/ovas/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/
-duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/vagrant/baseboxes/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/vmware.box artefacts/vagrant-base-boxes/base-boxes/antarctica-trusty/vmware.box
-duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/vagrant/baseboxes/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/virtualbox.box artefacts/vagrant-base-boxes/base-boxes/antarctica-trusty/virtualbox.box
-duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/ovas/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/vmware.ova artefacts/ovas/antarctica-trusty-vmware-iso/vmware.ova
-duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/ovas/ubuntu/14.04/amd64/${VAR_antarctica_trusty_version}/virtualbox.ova artefacts/ovas/antarctica-trusty-virtualbox-iso/virtualbox.ova
-printf "${FGGreen}<>${FGreset} 'antarctica/trusty' artefacts copied to BAS SAN successfully\n"
-
-
-printf "\n"
-duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/vagrant/baseboxes/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/vmware.box artefacts/vagrant-base-boxes/base-boxes/antarctica-centos7/vmware.box
-duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/vagrant/baseboxes/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/virtualbox.box artefacts/vagrant-base-boxes/base-boxes/antarctica-centos7/virtualbox.box
-duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/ovas/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/vmware.ova artefacts/ovas/antarctica-centos7-vmware-iso/vmware.ova
-duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/ovas/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/virtualbox.ova artefacts/ovas/antarctica-centos7-virtualbox-iso/virtualbox.ova
-printf "${FGGreen}<>${FGreset} 'antarctica/centos7' artefacts copied to AWS S3 successfully\n"
-
-printf "\n"
-ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/vagrant/baseboxes/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/
-ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/ovas/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/
-duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/vagrant/baseboxes/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/vmware.box artefacts/vagrant-base-boxes/base-boxes/antarctica-centos7/vmware.box
-duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/vagrant/baseboxes/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/virtualbox.box artefacts/vagrant-base-boxes/base-boxes/antarctica-centos7/virtualbox.box
-duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/ovas/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/vmware.ova artefacts/ovas/antarctica-centos7-vmware-iso/vmware.ova
-duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/ovas/centos/7.1/x86_64/${VAR_antarctica_centos7_version}/virtualbox.ova artefacts/ovas/antarctica-centos7-virtualbox-iso/virtualbox.ova
-printf "${FGGreen}<>${FGreset} 'antarctica/centos7' artefacts copied to BAS SAN successfully\n"
+ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/scratch/icehack/environment/vagrant/baseboxes/${VAR_antarctica_icehack_version}/
+ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/scratch/icehack/environment/ovas/${VAR_antarctica_icehack_version}/
+duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/scratch/icehack/environment/vagrant/baseboxes/${VAR_antarctica_icehack_version}/vmware.box artefacts/vagrant-base-boxes/base-boxes/antarctica-trusty/vmware.box
+duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/scratch/icehack/environment/vagrant/baseboxes/${VAR_antarctica_icehack_version}/virtualbox.box artefacts/vagrant-base-boxes/base-boxes/antarctica-trusty/virtualbox.box
+duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/scratch/icehack/environment/ovas/${VAR_antarctica_icehack_version}/vmware.ova artefacts/ovas/antarctica-icehack-vmware-iso/vmware.ova
+duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/scratch/icehack/environment/ovas/${VAR_antarctica_icehack_version}/virtualbox.ova artefacts/ovas/antarctica-icehack-virtualbox-iso/virtualbox.ova
+printf "${FGGreen}<>${FGreset} 'antarctica/icehack' artefacts copied to BAS SAN successfully\n"
 
 printf "\n"
 printf "${FGGreen}Release Complete${FGreset}\n"

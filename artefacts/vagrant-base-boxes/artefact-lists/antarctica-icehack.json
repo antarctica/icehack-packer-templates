@@ -1,0 +1,22 @@
+{
+  "name": "antarctica/icehack",
+  "description": "Virtual environment for the BAS Icehack event",
+  "versions": [
+    {
+      "version": "0.1.0-alpha",
+      "providers": [
+        {
+          "name": "virtualbox",
+          "url": "https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/0.1.0-alpha/virtualbox.box",
+          "checksum_type": "sha1",
+          "checksum": ""
+        },
+        {
+          "name": "vmware_desktop",
+          "url": "https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/0.1.0-alpha/vmware.box",
+          "checksum"
+        }
+      ]
+    }
+  ]
+}

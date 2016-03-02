@@ -73,8 +73,7 @@
         "TEMPLATE_VERSION={{user `release_version`}}"
       ],
       "scripts": [
-        "provisioning/scripts/common/metadata.sh",
-        "provisioning/scripts/ubuntu/cleanup.sh"
+        "provisioning/scripts/common/metadata.sh"
       ]
     }
   ],

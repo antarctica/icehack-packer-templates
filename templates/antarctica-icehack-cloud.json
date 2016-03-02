@@ -37,7 +37,9 @@
       "type": "shell",
       "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
       "scripts": [
-        "provisioning/scripts/icehack/users.sh"
+        "provisioning/scripts/icehack/users.sh",
+        "provisioning/scripts/icehack/install-system-packages.sh",
+        "provisioning/scripts/icehack/install-netcdf-tools.sh"
       ]
     },
     {
@@ -61,7 +63,8 @@
       "type": "shell",
       "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E -H -u user bash '{{.Path}}'",
       "scripts": [
-        "provisioning/scripts/icehack/miniconda-configure-update.sh"
+        "provisioning/scripts/icehack/miniconda-configure-update.sh",
+        "provisioning/scripts/icehack/install-iris.sh"
       ]
     },
     {

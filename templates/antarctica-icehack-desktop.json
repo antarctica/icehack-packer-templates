@@ -146,11 +146,6 @@
     {
       "type": "shell",
       "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "environment_vars": [
-        "TEMPLATE_NAME={{user `atlas_artifact`}}",
-        "TEMPLATE_NAME_ALT={{user `artefact`}}",
-        "TEMPLATE_VERSION={{user `release_version`}}"
-      ],
       "scripts": [
         "provisioning/scripts/ubuntu/update-desktop.sh",
         "provisioning/scripts/common/sshd.sh",
@@ -160,9 +155,46 @@
         "provisioning/scripts/common/vagrant.sh",
         "provisioning/scripts/common/vmtools.sh",
         "provisioning/scripts/ubuntu/regenerate-host-keys.sh",
-        "provisioning/scripts/common/metadata.sh",
         "provisioning/scripts/icehack/users.sh",
-        "provisioning/scripts/ubuntu/cleanup.sh",
+        "provisioning/scripts/icehack/install-system-packages.sh",
+        "provisioning/scripts/icehack/install-netcdf-tools.sh"
+      ]
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E -H -u user bash '{{.Path}}'",
+      "scripts": [
+        "provisioning/scripts/icehack/miniconda-download.sh"
+      ]
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E -H -u user bash '{{.Path}}'",
+      "inline": [
+        "cd /home/user",
+        "./miniconda.sh -b -p /home/user/miniconda",
+        "rm /home/user/miniconda.sh",
+        "echo 'PATH=/home/user/miniconda/bin:$PATH' >> /home/user/.bashrc"
+      ]
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E -H -u user bash '{{.Path}}'",
+      "scripts": [
+        "provisioning/scripts/icehack/miniconda-configure-update.sh",
+        "provisioning/scripts/icehack/install-iris.sh"
+      ]
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "environment_vars": [
+        "TEMPLATE_NAME={{user `atlas_artifact`}}",
+        "TEMPLATE_NAME_ALT={{user `artefact`}}",
+        "TEMPLATE_VERSION={{user `release_version`}}"
+      ],
+      "scripts": [
+        "provisioning/scripts/common/metadata.sh",
         "provisioning/scripts/common/minimize.sh",
         "provisioning/scripts/common/remove-host-keys.sh"
       ]

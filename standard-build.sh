@@ -167,8 +167,8 @@ printf "\n"
 printf "  This script will now call (cyber)duck to distribute artefacts to the BAS SAN and AWS S3 for release - specifically it will call:\n"
 printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/environment/vagrant/baseboxes/${VAR_antarctica_icehack_version}/vmware.box artefacts/vagrant-base-boxes/base-boxes/antarctica-icehack/vmware.box\n"
 printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/environment/vagrant/baseboxes/${VAR_antarctica_icehack_version}/virtualbox.box artefacts/vagrant-base-boxes/base-boxes/antarctica-icehack/virtualbox.box\n"
-printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/ovas/ubuntu/14.04/amd64/${VAR_antarctica_icehack_version}/vmware.ova artefacts/ovas/antarctica-icehack-vmware-iso/vmware.ova\n"
-printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/ovas/ubuntu/14.04/amd64/${VAR_antarctica_icehack_version}/virtualbox.ova artefacts/ovas/antarctica-icehack-virtualbox-iso/virtualbox.ova\n"
+printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/ovas/${VAR_antarctica_icehack_version}/vmware.ova artefacts/ovas/antarctica-icehack-vmware-iso/vmware.ova\n"
+printf "  $ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/ovas/${VAR_antarctica_icehack_version}/virtualbox.ova artefacts/ovas/antarctica-icehack-virtualbox-iso/virtualbox.ova\n"
 printf "\n"
 printf "  $ ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/scratch/icehack/environment/vagrant/baseboxes/${VAR_antarctica_icehack_version}/\n"
 printf "  $ ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/scratch/icehack/environment/ovas/${VAR_antarctica_icehack_version}/\n"
@@ -185,8 +185,8 @@ confirm
 printf "\n"
 duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/environment/vagrant/baseboxes/${VAR_antarctica_icehack_version}/vmware.box artefacts/vagrant-base-boxes/base-boxes/antarctica-icehack/vmware.box
 duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/environment/vagrant/baseboxes/${VAR_antarctica_icehack_version}/virtualbox.box artefacts/vagrant-base-boxes/base-boxes/antarctica-icehack/virtualbox.box
-duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/ovas/ubuntu/14.04/amd64/${VAR_antarctica_icehack_version}/vmware.ova artefacts/ovas/antarctica-icehack-vmware-iso/vmware.ova
-duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/ovas/ubuntu/14.04/amd64/${VAR_antarctica_icehack_version}/virtualbox.ova artefacts/ovas/antarctica-icehack-virtualbox-iso/virtualbox.ova
+duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/ovas/${VAR_antarctica_icehack_version}/vmware.ova artefacts/ovas/antarctica-icehack-vmware-iso/vmware.ova
+duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/ovas/${VAR_antarctica_icehack_version}/virtualbox.ova artefacts/ovas/antarctica-icehack-virtualbox-iso/virtualbox.ova
 printf "${FGGreen}<>${FGreset} 'antarctica/icehack' artefacts copied to AWS S3 successfully\n"
 
 printf "\n"

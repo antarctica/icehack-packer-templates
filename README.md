@@ -1,39 +1,29 @@
-# BAS Packer VM Templates
+# Icehack Packer VM Templates
 
-A subset of customised [Packer](http://www.packer.io/) templates from [Bento](https://github.com/opscode/bento) to 
-act as localised, minimal, base images for desktop and cloud providers.
+An environment for use in the [Icehack](http://www.sciencefestival.cam.ac.uk/events/icehack-exploring-polar-data) event 
+hosted by BAS as part of the Cambridge Science Festival 2016.
+
+Based on templates produced by the [BAS Base Images project](https://github.com/antarctica/packer-vm-templates), 
+which are in turn, based on templates from [Bento](https://github.com/opscode/bento).
 
 ## Pre-built artefacts
 
-Pre-compiled artefacts for the current version of each template are listed here. Except where otherwise stated artefacts
-are made publicly available, under the same license as this project.
+Pre-compiled artefacts for the current version of the pre-built environment template are listed here.
 
-| Template                      | Format               | Status | Provider         | Distribution Method & URL                                                                                                                                                                          | Notes                                                                                    |
-| ----------------------------- | -------------------- | ------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `antarctica/trusty`           | Vagrant base box     | Mature | VMware Desktop   | [Atlas](https://atlas.hashicorp.com/antarctica/boxes/trusty/versions/3.3.0) / [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-packages-prod/vagrant/baseboxes/ubuntu/14.04/amd64/3.3.0/vmware.box)  | Supports VMware Fusion and Workstation [1] [2]                                           |
-| `antarctica/trusty`           | Vagrant base box     | Mature | VirtualBox       | [Atlas](https://atlas.hashicorp.com/antarctica/boxes/trusty/versions/3.3.0) / [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-packages-prod/vagrant/baseboxes/ubuntu/14.04/amd64/3.3.0/virtual.box) | Supports VMware Fusion and Workstation [1] [2]                                           |
-| `antarctica/trusty`           | OVA [3]              | Mature | VMware Desktop   | [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-packages-prod/ovas/ubuntu/14.04/amd64/3.3.0/vmware.ova)                                                                                             | Supports VMware Fusion, Workstation and ESXi                                             |
-| `antarctica/trusty`           | OVA [3]              | Mature | VirtualBox       | [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-packages-prod/ovas/ubuntu/14.04/amd64/3.3.0/virtualbox.ova)                                                                                         | -                                                                                        |
-| `antarctica/trusty`           | DigitalOcean Image   | Mature | DigitalOcean     | [Atlas](https://atlas.hashicorp.com/antarctica/artifacts/trusty/types/digitalocean.droplet/6)                                                                                                      | Available only in the `lon1` region, includes private networking but not backups [1] [4] |
-| `antarctica/trusty`           | Amazon Machine Image | New    | EC2              | [Atlas](https://atlas.hashicorp.com/antarctica/artifacts/trusty/types/amazon.ami/6)                                                                                                                | Available only in the `eu-west-1` region                                                 |
-| `antarctica/trusty-vdirector` | Zipped OVF           | New    | VMware vDirector | [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-packages-prod/ovas/ubuntu/14.04/amd64/3.2.0/vmware-vdirector-0.1.1.ovf.zip)                                                                         | Supports VMware vDirector [7] [8]                                                        |
-| `antarctica/centos7`          | Vagrant base box     | New    | VMware Desktop   | [Atlas](https://atlas.hashicorp.com/antarctica/boxes/centos7/versions/0.7.0) / [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-packages-prod/vagrant/baseboxes/centos/7.1/x86_64/0.7.0/vmware.box)  | Supports VMware Fusion and Workstation [1] [2]                                           |
-| `antarctica/centos7`          | Vagrant base box     | New    | VirtualBox       | [Atlas](https://atlas.hashicorp.com/antarctica/boxes/centos7/versions/0.7.0) / [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-packages-prod/vagrant/baseboxes/centos/7.1/x86_64/0.7.0/virtual.box) | Supports VMware Fusion and Workstation [1] [2]                                           |
-| `antarctica/centos7`          | OVA [3]              | New    | VMware           | [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-packages-prod/ovas/centos/7.1/x86_64/0.7.0/vmware.ova)                                                                                              | Supports VMware Fusion, Workstation and ESXi                                             |
-| `antarctica/centos7`          | OVA [3]              | New    | VirtualBox       | [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-packages-prod/ovas/centos/7.1/x86_64/0.7.0/virtualbox.ova)                                                                                          | -                                                                                        |
-| `antarctica/centos7`          | DigitalOcean Image   | New    | DigitalOcean     | [Atlas](https://atlas.hashicorp.com/antarctica/artifacts/centos7/types/digitalocean.droplet/9)                                                                                                     | Available only in the `lon1` region, includes private networking but not backups [1] [4] |
-| `antarctica/centos7`          | Amazon Machine Image | New    | EC2              | [Atlas](https://atlas.hashicorp.com/antarctica/artifacts/centos7/types/amazon.ami/8)                                                                                                               | Available only in the `eu-west-1` region [6]                                             |
+| Template             | Format               | Provider         | Distribution Method & URL                                                                                                                                                                          | Notes                                                                                    |
+| -------------------- | -------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `antarctica/icehack` | Vagrant base box     | VMware Desktop   | [Atlas](https://atlas.hashicorp.com/antarctica/boxes/icehack/versions/0.1.0-alpha) / [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/baseboxes/0.1.0-alpha/vmware.box)  | Supports VMware Fusion and Workstation [1] [2]                                           |
+| `antarctica/icehack` | Vagrant base box     | VirtualBox       | [Atlas](https://atlas.hashicorp.com/antarctica/boxes/icehack/versions/0.1.0-alpha) / [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/baseboxes/0.1.0-alpha/virtual.box) | [1] [2]                                                                                  |
+| `antarctica/icehack` | OVA [3]              | VMware Desktop   | [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/ovas/0.1.0-alpha/vmware.ova)                                                                                                    | Supports VMware Fusion, Workstation and ESXi                                             |
+| `antarctica/icehack` | OVA [3]              | VirtualBox       | [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/ovas/3.1.0-alpha/virtualbox.ova)                                                                                                | -                                                                                        |
+| `antarctica/icehack` | DigitalOcean Image   | DigitalOcean     | [Atlas](https://atlas.hashicorp.com/antarctica/artifacts/icehack/types/digitalocean.droplet/1)                                                                                                     | Available only in the `lon1` region, includes private networking but not backups [1] [4] |
+| `antarctica/icehack` | Amazon Machine Image | EC2              | [Atlas](https://atlas.hashicorp.com/antarctica/artifacts/icehack/types/amazon.ami/1)                                                                                                               | Available only in the `eu-west-1` region                                                 |
 
-The recommended method to use DigitalOcean images is through [Terraform](https://www.terraform.io), using the BAS
-[terraform-module-digital-ocean-droplet](https://github.com/antarctica/terraform-module-digital-ocean-droplet) module.
+The recommended method to use DigitalOcean images is through [Terraform](https://www.terraform.io).
 
 The recommended method to use EC2 AMIs is through [Terraform](https://www.terraform.io).
 
-Note: The *status* attribute represents how stable an artefact is. New artefacts will be listed as *New* and may contain
-teething issues, such as small bugs or performance issues. Once these are fixed, artefacts will marked as *Mature*. This
-does not mean mature artefacts cannot be improved, rather that they are expected to work in most cases.
-
-[1] Atlas artefacts are listed under the [Antarctica](https://atlas.hashicorp.com/antarctica).
+[1] Atlas artefacts are listed under the [Antarctica](https://atlas.hashicorp.com/antarctica) organisation.
 
 [2] To use a base boxes list its name in a `Vagrantfile`, or follow the instructions in the
 [Atlas documentation](https://atlas.hashicorp.com/help/vagrant/boxes/catalog).
@@ -43,131 +33,34 @@ making it ideal for distribution.
 
 [4] DigitalOcean images cannot be shared so this is not available publicly.
 
-[5] SELinux is **NOT** disabled on this artefact, see [this issue](https://jira.ceh.ac.uk/browse/BASWEB-500) for further
-details.
-
-[6] Despite being free the CentOS base AIM carries a license agreement which prevents the built artefact from being
-shared publicly. To use this AMI you must be assigned permissions. Please get in touch using the information in the
-*Feedback* section if you wish to use this artefact.
-
-[7] These artefacts are essentially an addition to artefacts produced for the 'antarctica/trusty' template and as such 
-are located within the directory structure for the 'antarctica/trusty' template.
-
-[8] vDirector templates are also listed in the shared *BAS-Base-Images* catalogue within the *PolarView* tenancy in 
-the JASMIN unmanaged cloud vDirector instance. To use these templates in other vDirector instances, download the zipped 
-OVF file and upload to your own instance.
-
-Note: Currently access to this catalogue is restricted to members of the *PolarView* tenancy, this is being addressed 
-with JASMIN support. Until this is fixed, follow the instructions above for users of other vDirector instances to load
-these templates into a catalogue within another tenancy.
-
 ## Contents
 
-* [BAS Packer VM Templates](#bas-packer-vm-templates)
-    * [Pre\-built artefacts](#pre-built-artefacts)
-    * [Contents](#contents)
-    * [Supported operating systems](#supported-operating-systems)
-      * [Operating system customisations](#operating-system-customisations)
-    * [Supported providers](#supported-providers)
-    * [Default user accounts (conventional)](#default-user-accounts-conventional)
-    * [Default user accounts (unconventional)](#default-user-accounts-unconventional)
-      * [BAS SAN distribution location](#bas-san-distribution-location)
-      * [Build environment](#build-environment)
-      * [Older artefacts](#older-artefacts)
-      * [Artefact indexes](#artefact-indexes)
-      * [Accessing template information from within instances](#accessing-template-information-from-within-instances)
-    * [Building artefacts](#building-artefacts)
-      * [Artefact formats](#artefact-formats)
-        * [Vagrant base boxes](#vagrant-base-boxes)
-        * [OVA files](#ova-files)
-        * [DigitalOcean images](#digitalocean-images)
-        * [Amazon Machine Images (AMIs)](#amazon-machine-images-amis)
-        * [VMware vApps](#vmware-vapps)
-      * [Requirements](#requirements)
-    * [Setup](#setup)
-    * [Usage](#usage)
-      * [Standard builds](#standard-builds)
-      * [Manual builds](#manual-builds)
-    * [Packaging/Distribution](#packagingdistribution)
-      * [Vagrant base boxes](#vagrant-base-boxes-1)
-        * [Artefact lists](#artefact-lists)
-        * [Atlas](#atlas)
-        * [S3](#s3)
-        * [BAS SAN](#bas-san)
-      * [OVA files](#ova-files-1)
-        * [VirtualBox (virtualbox\-iso)](#virtualbox-virtualbox-iso)
-        * [VMware (vmware\-iso)](#vmware-vmware-iso)
-        * [S3](#s3-1)
-        * [BAS SAN](#bas-san-1)
-      * [DigitalOcean images](#digitalocean-images-1)
-      * [Amazon Machine Images](#amazon-machine-images)
-        * [VMware vApps](#vmware-vapps-1)
-        * [S3](#s3-2)
-        * [BAS SAN](#bas-san-2)
-        * [vDirector](#vdirector)
-    * [Acknowledgements](#acknowledgements)
-    * [Contributing](#contributing)
-    * [Feedback](#feedback)
-    * [Developing](#developing)
-      * [Project management](#project-management)
-      * [Committing changes](#committing-changes)
-      * [Issue tracking](#issue-tracking)
-      * [License](#license)
+TODO.
 
 ## Supported operating systems
 
 Active support is provided for these operating systems, for the versions specified.
 See the *pre-built artefacts* section for distribution/download links.
 
-| Template Name                 | Template Version | Status | Distribution Name                | Distribution Version | Distribution Architecture | Notes   |
-| ----------------------------- | ---------------- | ------ | -------------------------------- | -------------------- | ------------------------- | ------- |
-| `antarctica/trusty`           | 3.2.0            | Mature |[Ubuntu](http://www.ubuntu.com/)  | 14.04 LTS (Trusty)   | AMD 64                    | -       |
-| `antarctica/trusty-vdirector` | 0.1.1            | New    |[Ubuntu](http://www.ubuntu.com/)  | 14.04 LTS (Trusty)   | AMD 64                    | [1] [2] |
-| `antarctica/centos7`          | 0.6.1            | New    |[CentOS](https://www.centos.org/) | 7.1                  | x86_64                    | -       |
-
-Note: The *status* attribute represents how stable a template is. New templates will be listed as *New* and may contain
-teething issues, such as small bugs or performance issues. Once these are fixed, templates will marked as *Mature*. This
-does not mean mature templates cannot be improved, rather that they are expected to work in most cases.
+| Template Name        | Template Version | Distribution Name                | Distribution Version | Distribution Architecture | Notes   |
+| -------------------- | ---------------- | -------------------------------- | -------------------- | ------------------------- | ------- |
+| `antarctica/icehack` | 0.1.0-alpha      | [Ubuntu](http://www.ubuntu.com/) | 14.04 LTS (Trusty)   | AMD 64                    | [1]     |
 
 Note: As using the `/` character is problematic with file systems an alternative template using a `-` character is used
 instead. For example a template named `antarctica/trusty` would alternatively be referred to as `antarctica-trusty`.
 
-[1] Required as vDirector requires a vApp OVF, which can only be produced using vCentre. BAS currently only has access
-to vCentre 4.x which is limited to VMware hardware version 7. By default Packer produces VMs with hardware version 9.
-This template is therefore a temporary requirement to produce a version of the 'antarctica/trusty' template with the 
-lower hardware version, until a newer version of vCentre is available.
-
-[2] This template uses all customisations applicable to the 'antarctica/trusty' template, version 3.2.0.
+[1] This template is based on the `antarctica/trusty` template from the BAS Base Images project.
 
 ### Operating system customisations
 
 Some customisations are made to these Operating systems using provisioning scripts and installation options, these are
 summarised below:
 
-| Template Name(s)     | Since | Customisation                                                 | Rational                                                         | Applicable Artefact Formats                  | Notes |
-| -------------------- | ----- | ------------------------------------------------------------- | ---------------------------------------------------------------- | -------------------------------------------- | ----- |
-| `antarctica/trusty`  | 0.1.0 | Vagrant support                                               | To enable Vagrant base box artefacts to be created               | *Vagrant base box* and *OVA*                 | -     |
-| `antarctica/trusty`  | 0.1.0 | Locale & keyboard layout set to UK                            | To suit UK hardware and use nearby package mirrors               | *Vagrant base box* and *OVA*                 | -     |
-| `antarctica/trusty`  | 1.0.0 | Basing template of the Bento project                          | No more reinventing the wheel, much smaller artefacts            | *Vagrant base box* and *OVA*                 | -     |
-| `antarctica/trusty`  | 2.0.0 | Agent forwarding support in Sudo                              | To allow Git checkouts using PKI when acting as root             | *All*                                        | -     |
-| `antarctica/trusty`  | 3.0.0 | System firewall enabled by default, with an exception for SSH | For basic system security whilst allowing remote management      | *All*                                        | -     |
-| `antarctica/trusty`  | 3.1.0 | Adding template information to an Ansible local facts file    | For registering instances of this template in system inventories | *Vagrant base box* and *OVA*                 | -     |
-| `antarctica/trusty`  | 3.2.0 | Removing SSH host keys                                        | To ensure unique host keys to be used for each instance          | *Vagrant base box* and *OVA*                 | -     |
-| `antarctica/trusty`  | 3.3.0 | Adding Terraform user                                         | To ensure consistent access across templates for provisioning    | *AMI* and *DigitalOcean Image*               | -     |
-| `antarctica/centos7` | 0.1.0 | SELinux set to "permissive"                                   | To be compatible with some legacy BAS projects                   | *All except AMI*                             | [1]   |
-| `antarctica/centos7` | 0.1.0 | Root password set to "password"                               | To emphasise that this is not a secure default                   | *Vagrant base box* and *OVA*                 | -     |
-| `antarctica/centos7` | 0.1.0 | Agent forwarding support in Sudo                              | To allow Git checkouts using PKI when acting as root             | *All*                                        | -     |
-| `antarctica/centos7` | 0.2.0 | Password-less sudo enabled for members of the 'wheel' group   | To allow provisioning tools to perform sudo actions              | *All*                                        | -     |
-| `antarctica/centos7` | 0.3.0 | System firewall enabled by default, with an exception for SSH | For basic system security whilst allowing remote management      | *All*                                        | -     |
-| `antarctica/centos7` | 0.4.0 | UID for Vagrant user set to '900'                             | For consistency with Ubuntu and allow users to start from 1000   | *Vagrant base box* and *OVA*                 | -     |
-| `antarctica/centos7` | 0.5.0 | Adding template information to an Ansible local facts file    | For registering instances of this template in system inventories | *Vagrant base box* and *OVA*                 | -     |
-| `antarctica/centos7` | 0.6.0 | Removing SSH host keys                                        | To ensure unique host keys to be used for each instance          | *Vagrant base box* and *OVA*                 | -     |
-| `antarctica/trusty`  | 0.7.0 | Adding Terraform user                                         | To ensure consistent access across templates for provisioning    | *AMI* and *DigitalOcean Image*               | -     |
+| Template Name(s)     | Since       | Customisation | Rational                                                          | Applicable Artefact Formats | Notes |
+| -------------------- | ----------- | ------------- | ----------------------------------------------------------------- | --------------------------- | ----- |
+| `antarctica/icehack` | 0.1.0-alpha | Default users | For easier logins using passwords rather than public/private keys | *ALL*                       | -     |
 
-Note: The above list does not include customisations made by the Bento project.
-
-[1] It is not currently possible to disable SELinux on *AMI* artefacts, 
-see [BASWEB-500](https://jira.ceh.ac.uk/browse/BASWEB-500) for details.
+Note: The above list does not include customisations made by the Bento project or the BAS Base Images project.
 
 ## Supported providers
 
@@ -176,43 +69,62 @@ Active support is provided for a range of desktop and cloud providers, for the v
 | Provider            | Vendor              | Provider Version | Notes                                        |
 | ------------------- | ------------------- | ---------------- | -------------------------------------------- |
 | VMware Fusion (Pro) | VMware              | 8.1.0            | [1]                                          |
-| VMware Workstation  | VMware              | 11.1.2           | [1]                                          |
+| VMware Workstation  | VMware              | 12.1.0           | [1]                                          |
 | VMware ESXi         | VMware              | 6.0              | And associated products such as vCentre. [1] |
-| VirtualBox          | Oracle              | 5.0.10           | -                                            |
+| VirtualBox          | Oracle              | 5.0.14           | -                                            |
 | DigitalOcean        | DigitalOcean        | -                | -                                            |
 | EC2                 | Amazon Web Services | -                | -                                            |
-| VMware vDirector    | vDirector           | 5.5              | [2]                                          |
 
 [1] Because VMware Tools is not forwards compatible you must use a version of the relevant VMware product equal or lower
 than shown in this table. This is a VMware limitation, not with Packer, Bento or us.
 
-[2] Extremely experimental! Only the 'antarctica/trusty-vdirector' template is supported for this provider.
-
 ## Default user accounts (conventional)
 
-Each artefact will contain of two conventional user accounts, depending on the artefact provider. These user accounts
-are consistent across all supported operating systems.
+Each artefact will contain one or more conventional user accounts, depending on the artefact provider. 
+These user accounts are consistent across all supported operating systems.
 
-These accounts are designed to provide initial access for provisioning, which will typically involve creating 
-additional user accounts. It is recommended to disable these conventional accounts in these cases.
+These accounts are designed to provide generic access to virtual machines, without needing to create accounts for 
+specific individuals.
 
 Note: Artefacts may contain additional default accounts, which are unconventional, and not controlled by this project.
 
 | Provider            | Username    | Privileged (Sudo) | Authorised Keys                             | Notes |
 | ------------------- | ----------- | ----------------- | ------------------------------------------- | ----- |
 | VMware Fusion (Pro) | `vagrant`   | Yes               | Vagrant shared insecure identity            | [1]   |
+| VMware Fusion (Pro) | `user`      | No                | None                                        | [3]   |
+| VMware Fusion (Pro) | `superuser` | Yes               | None                                        | [3]   |
 | VMware Workstation  | `vagrant`   | Yes               | Vagrant shared insecure identity            | [1]   |
+| VMware Workstation  | `user`      | No                | None                                        | [3]   |
+| VMware Workstation  | `superuser` | Yes               | None                                        | [3]   |
 | VMware ESXi         | `vagrant`   | Yes               | Vagrant shared insecure identity            | [1]   |
+| VMware ESXi         | `user`      | No                | None                                        | [3]   |
+| VMware ESXi         | `superuser` | Yes               | None                                        | [3]   |
 | VirtualBox          | `vagrant`   | Yes               | Vagrant shared insecure identity            | [1]   |
+| VirtualBox          | `user`      | No                | None                                        | [3]   |
+| VirtualBox          | `superuser` | Yes               | None                                        | [3]   |
 | DigitalOcean        | `terraform` | Yes               | BAS AWS Core Provisioning Identity          | [2]   |
+| DigitalOcean        | `user`      | No                | None                                        | [3]   |
+| DigitalOcean        | `superuser` | Yes               | None                                        | [3]   |
 | EC2                 | `terraform` | Yes               | BAS DigitalOcean Core Provisioning Identity | [2]   |
-| VMware vDirector    | `vagrant`   | Yes               | Vagrant shared insecure identity            | [1]   |
+| EC2                 | `user`      | No                | None                                        | [3]   |
+| EC2                 | `superuser` | Yes               | None                                        | [3]   |
 
 [1] This identity is shared between all Vagrant users and so is inherently insecure. This is used for creating Vagrant
 base box artefacts, but will also be present in any OVA based artefacts as these are built from the same source VM.
 More information on this identity is available [here](https://github.com/mitchellh/vagrant/tree/master/keys).
 
 [2] This identity is shared, and restricted to, relevant BAS Staff. Contact the Web & Applications Team for access.
+
+[3] This user is intended for general day-to-day use.
+
+[4] This user is intended for administration purposes only.
+
+### Default passwords
+
+| Username    | Password      | Notes                        |
+| ----------- | ------------- | ---------------------------- |
+| `user`      | `icehack`     | -                            |
+| `superuser` | `Ahh-a-seal!` | Passwords are case-sensitive |
 
 ## Default user accounts (unconventional)
 
@@ -227,9 +139,7 @@ ideally, using automated provisioning.
 | Provider     | Template            | Username | Privileged (Sudo) | Authorised Keys              | Notes |
 | ------------ | ------------------- | -------- | ----------------- | ---------------------------- | ----- |
 | EC2          | `antarctica/trusty` | `ubuntu` | Yes               | Defined at instance creation |       |
-| EC2          | `antarctica/centos` | `user`   | Yes               | Defined at instance creation |       |
 | DigitalOcean | `antarctica/trusty` | `root`   | Yes               | Defined at instance creation | [1]   |
-| DigitalOcean | `antarctica/centos` | `root`   | Yes               | Defined at instance creation | [1]   |
 
 [1] Be careful about provisioning steps which may configure SSH to refuse root logins. Without additional privileged 
 users it will be impossible to connect to such instances, including to create additional users.
@@ -237,15 +147,16 @@ users it will be impossible to connect to such instances, including to create ad
 ### BAS SAN distribution location
 
 BAS Staff can also access these artefacts from the BAS SAN by replacing
-`https://s3-eu-west-1.amazonaws.com/bas-packages-prod` in any HTTPS link with `/data/softwaredist`.
+`https://s3-eu-west-1.amazonaws.com/bas-icehack/environment` in any HTTPS link with 
+`/data/softwaredist/scratch/icehack/environment`.
 
 For example...
 
-`https://s3-eu-west-1.amazonaws.com/bas-packages-prod/ovas/ubuntu/14.04/amd64/2.0.0/virtualbox.ova`
+`https://s3-eu-west-1.amazonaws.com/bas-icehack/ovas/2.0.0/virtualbox.ova`
 
 ...would become
 
-`/data/softwaredist/ovas/ubuntu/14.04/amd64/2.0.0/virtualbox.ova`
+`/data/softwaredist/scratch/icehack/ovas/2.0.0/virtualbox.ova`
 
 Note: The BAS SAN is used as the canonical storage location for records management.
 
@@ -254,16 +165,9 @@ Note: The BAS SAN is used as the canonical storage location for records manageme
 The following software versions were used to produce these artefact's:
 
 * Mac OS X: version `10.10.5`
-* VirtualBox: version `5.0.10` (with version `5.0.10` of the VirtualBox Guest Additions)
-* VMware: version `8.1.0` (with bundled VMware Tools version)
+* VirtualBox: version `5.0.14` (with version `5.0.14` of the VirtualBox Guest Additions)
+* VMware Fusion Pro: version `8.1.0` (with bundled VMware Tools version)
 * Packer: version `0.8.6`
-
-### Older artefacts
-
-Artefacts for older template releases are available on request. These artefacts are deprecated, non-supported and
-**SHOULD NOT** be used. They **MUST NOT** be used in production environments or where available on the public internet.
-
-See the *Feedback* section for contact information if you wish to request these older artefacts.
 
 ### Artefact indexes
 
@@ -273,10 +177,9 @@ the HTTPS distribution URL, SHA1 checksum of the box and the provider it targets
 Note: These indexes are not supported, they are provided for legacy reasons when Vagrant base boxes were self hosted.
 They may be removed at any time.
 
-| Template Name        | Index URL                                                                                                                  | Notes |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------- | ----- |
-| `antarctica/trusty`  | [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-packages-prod/vagrant/baseboxes/ubuntu/14.04/amd64/antarctica-trusty.json)  | -     |
-| `antarctica/centos7` | [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-packages-prod/vagrant/baseboxes/centos/7.1/x86_64/antarctica-centos7.json)  | -     |
+| Template Name        | Index URL                                                                                                       | Notes |
+| -------------------- | --------------------------------------------------------------------------------------------------------------- | ----- |
+| `antarctica/icehack`  | [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/baseboxes/antarctica-icehack.json)  | -     |
 
 ### Accessing template information from within instances
 
@@ -349,14 +252,11 @@ The base images used are indicated below, they are minimal installations of each
 DigitalOcean. These images differ little from VMs produced using ISO files, except where required to run under
 DigitalOcean.
 
-| Template name        | Base Image         | Provider     | Notes |
-| -------------------- | ------------------ | ------------ | ----- |
-| `antarctica/trusty`  | `ubuntu-14-04-x64` | DigitalOcean | -     |
-| `antarctica/centos7` | `centos-7-0-x64`   | DigitalOcean | -     |
+| Template name        | Base Image          | Base Image Version | Provider     | Notes |
+| -------------------- | ------------------- | ------------------ | ------------ | ----- |
+| `antarctica/icehack` | `antarctica/trusty` | 3.3.0              | DigitalOcean | -     |
 
 Packer will create Artefacts to reference DigitalOcean images in Atlas automatically.
-
-Note: These images do not include a `vagrant` user, as this is not needed for cloud images.
 
 #### Amazon Machine Images (AMIs)
 
@@ -371,36 +271,15 @@ The base AMIs used are indicated below, they are official, minimal, installation
 the relevant distribution. These AMIs differ little from VMs produced using ISO files, except where required to run
 under EC2. One difference is the absence of a `vagrant` user, as this is not needed for cloud images.
 
-| Template name        | Base AMI                                                         | Provider                                                                                               | Notes |
-| -------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ----- |
-| `antarctica/trusty`  | [ami-47a23a30](https://aws.amazon.com/marketplace/pp/B00JV9TBA6) | [Canonical](https://aws.amazon.com/marketplace/seller-profile?id=565feec9-3d43-413e-9760-c651546613f2) | -     |
-| `antarctica/centos7` | [ami-e4ff5c93](https://aws.amazon.com/marketplace/pp/B00O7WM7QW) | [CentOS](https://aws.amazon.com/marketplace/seller-profile?id=16cb8b03-256e-4dde-8f34-1b0f377efe89)    | -     |
+| Template name        | Base AMI       | Provider                | Notes                                                         |
+| -------------------- | -------------- | ----------------------- | ------------------------------------------------------------- |
+| `antarctica/icehack` | `ami-c7229db4` | BAS Base Images project | Base AMI corresponds to `antarctica/trusty` AMI version 3.3.0 |
 
 Packer will create Artefacts to reference AMIs in Atlas automatically.
-
-Note: These images do not include a `vagrant` user, as this is not needed for cloud images.
 
 Note: Additional elements required to use an EC2 instance, as such security groups, SSH keys, etc. are not defined as
 part of the AMI. These additional elements will therefore need to be provided at runtime, ideally through a provisioning
 tool.
-
-#### VMware vApps
-
-A vApp represents a logical collection of virtual machines used within some VMware products, including vCentre and 
-vDirector.
-
-Packer cannot build vApps directly as this is not a supported format for VMware desktop applications. Instead Packer is
-used to build a standard OVF file (packaged as an OVA) and this is then imported into vCentre and converted into a vApp
-containing the Packer built VM.
-
-This vApp is then exported as an OVF and compressed to a single file for easier distribution. Zipped OVFs will need to 
-be manually copied to Amazon S3 (for HTTPS distribution) and the BAS SAN (for BAS SAN distribution).
-
-Note: In future this artefact will produced from the 'OVA' artefacts (for VMware) to reduce complexity. Currently it is
-not possible to do this due to incompatible VMware hardware versions.
-
-Note: Support for vApps is currently very experimental and may contain settings, names or meta-data that are specific
-to BAS. Where possible these will be removed, or changed to more generic values, as testing for vApps continues.
 
 ### Requirements
 
@@ -420,7 +299,7 @@ You will also need:
 * An `AWS_ACCESS_KEY_ID` environment variable set to your AWS access key ID, and both `AWS_ACCESS_KEY_SECRET` and
 `AWS_SECRET_ACCESS_KEY` environment variables set to your AWS Access Key [5]
 * Suitable permissions within AWS to create/destroy EC2 instances, AMIs, security groups, key-pairs, etc.
-* Access to the `bas-packages-prod` S3 bucket
+* Access to the `bas-icehack` S3 bucket
 * A private key with access to `bslcene.nerc-bas.ac.uk` located as `~/.ssh/id_rsa` [6]
 * Write access to the `/data/softwaredist` volume [7]
 
@@ -450,8 +329,8 @@ contact the [BAS ICT helpdesk](mailto:helpdesk@bas.ac.uk) if need help enabling 
 Clone and enter this project:
 
 ```shell
-$ git clone git@github.com:antarctica/packer-templates.git
-$ cd packer-templates
+$ git clone git@github.com:antarctica/icehack-packer-templates.git
+$ cd icehack-packer-templates
 ```
 
 ## Usage
@@ -460,8 +339,8 @@ $ cd packer-templates
 
 If you are generating all templates within this project, this is known as a *standard build*.
 
-As these involve preparation, running packer multiple times for different templates, followed by packaging and release 
-steps, a shell script to automate as much of this process is included for convenience.
+As this involves preparation, running packer, followed by packaging and release steps, a shell script to automate as 
+much of this process is included for convenience.
 
 This shell script is designed for this use-case only. It is not intended to be configurable or flexible to meet any
 custom needs.
@@ -508,7 +387,7 @@ $ packer build -only=vmware-iso -var 'release_version=1.2.3' templates/antarctic
 
 ## Packaging/Distribution
 
-Some artefact formats are packages and uploaded from distribution automatically by Packer, for other formats manual
+Some artefact formats are packaged and uploaded for distribution automatically by Packer, for other formats manual
 packaging and/or uploading is required.
 
 Note: You do not need to do this if you have used the standard build script, *except* for the artefact lists.
@@ -525,7 +404,7 @@ the HTTPS distribution URL, SHA1 checksum of the box and the provider it targets
 Add a new entry to the relevant artefact list in `artefacts/vagrant-base-boxes/artefact-lists`, following the pattern
 for previous releases. You will need to calculate an SHA1 hash for each `.box` file [1].
 
-The `bas-packages-prod` bucket is used to hold these lists. This bucket is stored under the BAS AWS account and should
+The `bas-icehack` bucket is used to hold these lists. This bucket is stored under the BAS AWS account and should
 be accessible to all account users by default. If this is not the case please get in touch using the information in the
 *feedback* section.
 
@@ -534,13 +413,7 @@ Note: This bucket has a permissions policy to allow anonymous read on all object
 Artefact lists should be stored using the following directory and file name structure:
 
 ```shell
-$ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/vagrant/baseboxes/[Template distribution name]/[Template distribution version]/[Template architecture]/[Template alternate name].json artefacts/vagrant-base-boxes/artefact-lists/[Template alternate name].json
-```
-
-E.g.
-
-```shell
-$ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/vagrant/baseboxes/ubuntu/14.04/amd64/antarctica-trusty.json artefacts/vagrant-base-boxes/artefact-lists/antarctica-trusty.json
+$ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/environment/vagrant/baseboxes/[Template alternate name].json artefacts/vagrant-base-boxes/artefact-lists/[Template alternate name].json
 ```
 
 [1] on Mac OS X you can use `$ openssl sha1 <file>`.
@@ -558,7 +431,7 @@ Additional meta-data will need to be manually added to provide a relevant change
 Amazon S3 is used an external alternative to Atlas in case this service becomes unsuitable in the future (due to
 pricing, feature changes, etc.).
 
-The `bas-packages-prod` bucket is used to hold base box artefacts. This bucket is stored under the BAS AWS account and
+The `bas-icehack` bucket is used to hold base box artefacts. This bucket is stored under the BAS AWS account and
 should be accessible to all account users by default. If this is not the case please get in touch using the information
 in the *feedback* section.
 
@@ -567,13 +440,7 @@ Note: This bucket has a permissions policy to allow anonymous read on all object
 Base boxes should be stored using the following directory and file name structure:
 
 ```shell
-$ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/vagrant/baseboxes/[Template distribution name]/[Template distribution version]/[Template architecture]/[Artefact version]/[Base box provider].box artefacts/vagrant-base-boxes/base-boxes/[Template alternate name]/[Packer builder].box
-```
-
-E.g.
-
-```shell
-$ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/vagrant/baseboxes/ubuntu/14.04/amd64/0.0.0/vmware.box artefacts/vagrant-base-boxes/base-boxes/antarctica-trusty/vmware.box
+$ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/environment/vagrant/baseboxes/[Artefact version]/[Base box provider].box artefacts/vagrant-base-boxes/base-boxes/[Template alternate name]/[Packer builder].box
 ```
 
 #### BAS SAN
@@ -590,20 +457,13 @@ Note: This volume has a permissions policy to allow anonymous read on all direct
 Base boxes should be stored using the following directory structure:
 
 ```shell
-$ ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/vagrant/baseboxes/[Template distribution name]/[Template distribution version]/[Template architecture]/[Artefact version]
+$ ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/scratch/icehack/environment/vagrant/baseboxes/[Artefact version]
 ```
 
 Base boxes should be stored using the following file name structure:
 
 ```shell
-$ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/vagrant/baseboxes/[Template distribution name]/[Template distribution version]/[Template architecture]/[Artefact version]/[Base box provider].box artefacts/vagrant-base-boxes/base-boxes/[Template alternate name]/[Packer builder].box
-```
-
-E.g.
-
-```shell
-$ ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/vagrant/baseboxes/ubuntu/14.04/amd64/0.0.0
-$ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/vagrant/baseboxes/ubuntu/14.04/amd64/0.0.0/vmware.box artefacts/vagrant-base-boxes/base-boxes/antarctica-trusty/vmware.box
+$ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/scratch/icehack/environment/vagrant/baseboxes/[Artefact version]/[Base box provider].box artefacts/vagrant-base-boxes/base-boxes/[Template alternate name]/[Packer builder].box
 ```
 
 ### OVA files
@@ -643,7 +503,7 @@ Note: If `ovftool --schemaValidate` fails the OVA file will not work when deploy
 
 #### S3
 
-The `bas-packages-prod` bucket is used to hold OVA artefacts. This bucket is stored under the BAS AWS account and
+The `bas-icehack` bucket is used to hold OVA artefacts. This bucket is stored under the BAS AWS account and
 should be accessible to all account users by default. If this is not the case please get in touch using the information
 in the *feedback* section.
 
@@ -652,13 +512,7 @@ Note: This bucket has a permissions policy to allow anonymous read on all object
 OVA files should be stored using the following directory and file name structure:
 
 ```shell
-$ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/ovas/[Template distribution name]/[Template distribution version]/[Template architecture]/[Artefact version]/[Provider].ova artefacts/ovas/[Template alternate name]-[Packer builder]/[Provider].ova
-```
-
-E.g.
-
-```shell
-$ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/ovas/ubuntu/14.04/amd64/0.0.0/vmware.ova artefacts/ovas/antarctica-trusty-vmware-iso/vmware.ova
+$ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-icehack/environment/ovas/[Artefact version]/[Provider].ova artefacts/ovas/[Template alternate name]-[Packer builder]/[Provider].ova
 ```
 
 #### BAS SAN
@@ -674,20 +528,13 @@ Note: This volume has a permissions policy to allow anonymous read on all direct
 OVA files should be stored using the following directory structure:
 
 ```shell
-$ ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/ovas/[Template distribution name]/[Template distribution version]/[Template architecture]/[Artefact version]
+$ ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/scratch/icehack/environment/ovas/[Artefact version]
 ```
 
 OVA files should then be stored using the following file name structure:
 
 ```shell
-$ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/ovas/[Template distribution name]/[Template distribution version]/[Template architecture]/[Artefact version]/[Provider].ova artefacts/ovas/[Template alternate name]-[Packer builder]/[Provider].ova
-```
-
-E.g.
-
-```shell
-$ ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/ovas/ubuntu/14.04/amd64/0.0.0
-$ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/ovas/ubuntu/14.04/amd64/0.0.0/vmware.ova artefacts/ovas/antarctica-trusty-vmware-iso/vmware.ova
+$ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/scratch/icehack/environment/ovas/[Artefact version]/[Provider].ova artefacts/ovas/[Template alternate name]-[Packer builder]/[Provider].ova
 ```
 
 ### DigitalOcean images
@@ -698,161 +545,9 @@ Packer will automatically store DigitalOcean images within the DigitalOcean acco
 
 Packer will automatically store AMIs within the Amazon Web Services account Packer is configured to use.
 
-#### VMware vApps
-
-The VMware builder produces a VM directory in its native format, a `.vmx` file with associated support files.
-This needs to be converted into an OVA file using the *OVFTool* utility prior to deployment to vCentre and conversion 
-to a vApp. This will then be exported as a zipped OVF file.
-
-See the *S3* and *BAS SAN* sub-sections of this section for instructions on distributing zipped OVF files.
-See the *vDirector* sub-section of this section for instructions on loading zipped OVF files into a vDirector catalogue.
-
-Note: Due to a bug, the `.vmx` file must be first converted to an OVF package, then into an OVA file using these steps:
-
-```shell
-$ cd [VMX directory]
-
-$ mkdir scratch
-$ ovftool vmware.vmx scratch/vmware.ovf
-$ cd scratch
-$ tar cf ../vmware.ova vmware.ovf vmware.mf vmware-disk1.vmdk
-$ cd ..
-$ ovftool --schemaValidate vmware.ova
-$ rm -rf scratch
-```
-
-Where: `[VMX directory]` is the path containing the `.vmx` file.
-
-Note: If `ovftool --schemaValidate` fails the OVA file will not work when deployed into a VMware product.
-
-Covert this OVA file to a vApp using vCentre using 
-[these steps](https://pubs.vmware.com/vsphere-50/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc_50%2FGUID-2A95EBB8-1779-40FA-B4FB-4D0845750879.html).
-
-Note: You will need to contact ICT to have the OVA file converted to a vApp [1], ensure you request the following:
-
-* All networks are removed from the inner VM to prevent errors when provisioning automatically in vDirector
-* The name of the inner VM is set to `node1` to be suitably generic 
-
-The vApp will typically be exported as an OVA file, these cannot be read by vDirector and so need to be converted to an
-OVF file.
-
-```shell
-$ mkdir vmware-vapp
-$ ovftool [vapp].ova vmware-vapp/vmware-vapp.ovf
-$ ovftool --schemaValidate vmware-vapp/vmware-vapp.ovf
-```
-
-Where: `[vapp]` is the file name of the vApp exported from vCentre.
-
-Note: Ovftool may complain about a missing manifest entry for the virtual hard disk (`[vapp]-disk1.vmdk`), this is fine
-as it relates to the input OVA file, not the OVF file produced (the manifest for which includes all relevant entries).
-
-For distribution the OVF file is compressed as a zip archive:
-
-```shell
-$ cd vmware-vapp
-$ zip ../vmware-vapp.ovf.zip -r vmware-vapp-disk1.vmdk vmware-vapp.mf vmware-vapp.ovf
-$ cd ..
-$ rm -rf vmware-vapp
-```
-
-[1] Specifically [Jeremy Robst](mailto:jpro@bas.ac.uk)
-
-#### S3
-
-The `bas-packages-prod` bucket is used to hold vApp artefacts. This bucket is stored under the BAS AWS account and
-should be accessible to all account users by default. If this is not the case please get in touch using the information
-in the *feedback* section.
-
-Note: This bucket has a permissions policy to allow anonymous read on all objects (but not directories or ACLs).
-
-vApp files should be stored using the following directory and file name structure:
-
-```shell
-$ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/vapps/[Template distribution name]/[Template distribution version]/[Template architecture]/[Artefact version]/[Provider]-vapp.ovf.zip [Provider]-vapp.ovf.zip
-```
-
-E.g.
-
-```shell
-$ duck --username $AWS_ACCESS_KEY_ID --password $AWS_ACCESS_KEY_SECRET --region eu-west-1 --upload s3://bas-packages-prod/vapps/ubuntu/14.04/amd64/0.0.0/vmware-vapp.ovf.zip vmware-vapp.ovf.zip
-```
-
-#### BAS SAN
-
-The BAS SAN is used as the canonical storage location for records management.
-
-The `/data/softwaredist` SAN volume is used to hold vApp artefacts. This volume is writeable to all members of the
-`swpack` Unix group, which should include all relevant staff. Contact the [BAS ICT helpdesk](mailto:helpdesk@bas.ac.uk)
-if you don't have this access.
-
-Note: This volume has a permissions policy to allow anonymous read on all directories and files.
-
-vApp files should be stored using the following directory structure:
-
-```shell
-$ ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/vapps/[Template distribution name]/[Template distribution version]/[Template architecture]/[Artefact version]
-```
-
-OVA files should then be stored using the following file name structure:
-
-```shell
-$ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/vapps/[Template distribution name]/[Template distribution version]/[Template architecture]/[Artefact version]/[Provider]-vapp.ovf.zip [Provider]-vapp.ovf.zip
-```
-
-E.g.
-
-```shell
-$ ssh bslcene.nerc-bas.ac.uk mkdir -p /data/softwaredist/vapps/ubuntu/14.04/amd64/0.0.0
-$ duck --username $(whoami) --identity ~/.ssh/id_rsa --upload sftp://bslcene.nerc-bas.ac.uk/data/softwaredist/vapps/ubuntu/14.04/amd64/0.0.0/vmware-vapp.ovf.zip artefacts/ovas/antarctica-trusty-vmware-iso/vmware-vmware.ovf.zip
-```
-
-#### vDirector
-
-vApps produces by this project can be imported into a catalogue in vDirector to act as templates for new vApps.
-I.e. A base vApp which mirrors the base VMs or images used by other providers.
-
-The vApp OVF file will need to uploaded to vDirector using the on-line interface.
-
-Note: These instructions are tested with the vDirector installation used by the JASMIN un-managed cloud only. If you 
-are using installation of vDirector these steps may not work.
-
-Note: You must use Internet Explorer 11 in order to install the required browser plugins to upload files.
-
-Note: In future it is hoped an automated deployment method can be used to uploading the relevant OVF file.
-
-1. Download the relevant zipped vApp and uncompress to a local directory
-2. Login to the vDirector web interface and from the dashboard choose *Catalogues*
-3. Select the *BAS-Base-Images* Catalogue
-4. Choose the *vApps Templates* tab and then *upload*
-5. Choose *Upload* and select the OVF file uncompressed in step 1 and choose upload [1]
-    * Set the name to `[Template distribution name]-vdirector-[Template version]` (e.g. `antarctica/trusty-director-0.0.0`)
-    * Set to the description to [2]
-6. Once uploaded, select the template and choose *properties*:
-    * Set meta-data key-values to [3]
-
-[1] Though only the OVF file is selected, related files such as the virtual hard disk will be uploaded as well.
-
-[2]
-vDirector compatible version of the '`[Template distribution name]`' base image using a single VM wrapped in a vApp.
-More information: https://github.com/antarctica/packer-vm-templates
-
-E.g.
-vDirector compatible version of the 'antarctica/trusty' base image using a single VM wrapped in a vApp.
-More information: https://github.com/antarctica/packer-vm-templates
-
-[3]
-
-| Type | Name                  | Value                             | Value (example)     | Notes |
-| ---- | --------------------- | --------------------------------- | ------------------- | ----- |
-| Text | version               | `[Template version]`              | 0.0.0               | -     |
-| Text | x-associated-template | `[Template distribution name]`    | `antarctica/trusty` | -     |
-| Text | x-associated-version  | `[Template distribution version]` | 0.0.0               | -     |
-
 ## Acknowledgements
 
-Other than the changes listed in the *Operating system customisations* section, and an altered directory structure,
-these templates are the same as those found in the [Bento](https://github.com/opscode/bento) project from Chef.
+These templates are based on those found in the [Bento](https://github.com/opscode/bento) project from Chef.
 
 Therefore 90% of any credit for this project should rightfully go to Bento. The authors of this project are incredibly
 grateful for their work.
@@ -867,6 +562,7 @@ This project welcomes contributions, see `CONTRIBUTING` for our general policy.
 
 Please log all feedback to BAS Packer Templates project:
 
+* Please use the 'template-icehack' as a component
 * If you are a BAS/NERC staff member please use our [Jira project](https://jira.ceh.ac.uk/browse/BASPACK)
 * If you are external to BAS/NERC please email [webapps@bas.ac.uk](mailto:webapps@bas.ac.uk) to log feedback directly.
 

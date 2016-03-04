@@ -37,6 +37,7 @@
       "type": "shell",
       "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
       "scripts": [
+        "provisioning/scripts/icehack/enable-password-ssh.sh",
         "provisioning/scripts/icehack/users.sh",
         "provisioning/scripts/icehack/install-system-packages.sh",
         "provisioning/scripts/icehack/install-netcdf-tools.sh"

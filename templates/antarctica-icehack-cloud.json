@@ -34,9 +34,15 @@
   ],
   "provisioners": [
     {
+      "type": "file",
+      "source": "provisioning/files/icehack/jupyter.rules",
+      "destination": "/tmp/jupyter.rules"
+    },
+    {
       "type": "shell",
       "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
       "scripts": [
+        "provisioning/scripts/icehack/firewall.sh",
         "provisioning/scripts/icehack/enable-password-ssh.sh",
         "provisioning/scripts/icehack/users.sh",
         "provisioning/scripts/icehack/install-system-packages.sh",

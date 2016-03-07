@@ -144,6 +144,11 @@
   ],
   "provisioners": [
     {
+      "type": "file",
+      "source": "provisioning/files/icehack/jupyter.rules",
+      "destination": "/tmp/jupyter.rules"
+    },
+    {
       "type": "shell",
       "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
       "scripts": [
@@ -155,6 +160,7 @@
         "provisioning/scripts/common/vagrant.sh",
         "provisioning/scripts/common/vmtools.sh",
         "provisioning/scripts/ubuntu/regenerate-host-keys.sh",
+        "provisioning/scripts/icehack/firewall.sh",
         "provisioning/scripts/icehack/users.sh",
         "provisioning/scripts/icehack/install-system-packages.sh",
         "provisioning/scripts/icehack/install-netcdf-tools.sh"

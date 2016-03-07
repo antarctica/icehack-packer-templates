@@ -3,18 +3,34 @@
   "description": "Virtual environment for the BAS Icehack event",
   "versions": [
     {
-      "version": "0.1.0-alpha",
+      "version": "0.1.0",
       "providers": [
         {
           "name": "virtualbox",
-          "url": "https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/0.1.0-alpha/virtualbox.box",
+          "url": "https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/baseboxes/0.1.0/virtualbox.box",
           "checksum_type": "sha1",
           "checksum": "0066cb4f787421368146c0611a0eb7aba9547a79"
         },
         {
           "name": "vmware_desktop",
-          "url": "https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/0.1.0-alpha/vmware.box",
+          "url": "https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/basboxes/0.1.0-alpha/vmware.box",
           "checksum": "ce918fdfa7c0e07b27c8088baeb9326c19672411"
+        }
+      ]
+    },
+    {
+      "version": "0.1.1",
+      "providers": [
+        {
+          "name": "virtualbox",
+          "url": "https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/baseboxes/0.1.0-alpha/virtualbox.box",
+          "checksum_type": "sha1",
+          "checksum": "3a24c2a84edf443ebc57b5acbc65270192eee00a"
+        },
+        {
+          "name": "vmware_desktop",
+          "url": "https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/baseboxes/0.1.0-alpha/vmware.box",
+          "checksum": "ace64ab1d95cc01bf6449f8d8d765193a56e7e79"
         }
       ]
     }

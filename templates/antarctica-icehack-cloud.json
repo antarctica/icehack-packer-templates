@@ -39,6 +39,16 @@
       "destination": "/tmp/jupyter.rules"
     },
     {
+      "type": "file",
+      "source": "provisioning/files/icehack/dot-Rprofile",
+      "destination": "/tmp/dot-Rprofile"
+    },
+    {
+      "type": "file",
+      "source": "provisioning/files/icehack/install-irkernel.r",
+      "destination": "/tmp/install-irkernel.r"
+    },
+    {
       "type": "shell",
       "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
       "scripts": [
@@ -46,14 +56,16 @@
         "provisioning/scripts/icehack/enable-password-ssh.sh",
         "provisioning/scripts/icehack/users.sh",
         "provisioning/scripts/icehack/install-system-packages.sh",
-        "provisioning/scripts/icehack/install-netcdf-tools.sh"
+        "provisioning/scripts/icehack/install-netcdf-tools.sh",
+        "provisioning/scripts/icehack/install-r.sh"
       ]
     },
     {
       "type": "shell",
       "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E -H -u user bash '{{.Path}}'",
       "scripts": [
-        "provisioning/scripts/icehack/miniconda-download.sh"
+        "provisioning/scripts/icehack/miniconda-download.sh",
+        "provisioning/scripts/icehack/configure-r.sh"
       ]
     },
     {
@@ -72,6 +84,18 @@
       "scripts": [
         "provisioning/scripts/icehack/miniconda-configure-update.sh",
         "provisioning/scripts/icehack/install-iris.sh"
+      ]
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E -H -u user bash '{{.Path}}'",
+      "inline": [
+        "echo 'Configuring R'",
+        "cd /home/user",
+        "cp /tmp/install-irkernel.r /home/user/install-irkernel.r",
+        "R_LIBS_SITE=/home/user/R/library R < /home/user/install-irkernel.r --no-save",
+        "rm /home/user/install-irkernel.r",
+        "echo 'export R_LIBS_SITE=/home/user/R/library' >> /home/user/.bashrc"
       ]
     },
     {

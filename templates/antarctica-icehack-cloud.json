@@ -72,6 +72,7 @@
       "type": "shell",
       "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E -H -u user bash '{{.Path}}'",
       "inline": [
+        "echo 'Configuring Miniconda'",
         "cd /home/user",
         "./miniconda.sh -b -p /home/user/miniconda",
         "rm /home/user/miniconda.sh",

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash -eux
 
-# Install IRIS and dependencies
+# Install IRIS and its dependencies
 cd /home/user;
 /home/user/miniconda/bin/conda install system;
 /home/user/miniconda/bin/conda install basemap;

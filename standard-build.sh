@@ -98,8 +98,8 @@ read -r -p "? > Version for the antarctica/icehack template (e.g. 1.2.3) " VAR_a
 
 printf "\n"
 printf "  This script will now call packer to build *ALL* VM templates - specifically it will call:\n"
-printf "  $ packer build -var 'release_version=${VAR_antarctica_icehack_version}' templates/antarctica-icehack-desktop.json\n"
 printf "  $ packer build -var 'release_version=${VAR_antarctica_icehack_version}' templates/antarctica-icehack-cloud.json\n"
+printf "  $ packer build -var 'release_version=${VAR_antarctica_icehack_version}' templates/antarctica-icehack-desktop.json\n"
 
 printf "\n"
 printf "${FGYellow}For safety, you need to confirm this action${FGreset}\n"
@@ -108,16 +108,16 @@ confirm
 printf "\n  Sit tight this will take a while - Packer's output will follow...\n"
 
 printf "\n"
-printf "  Processing the 'antarctica/icehack' (desktop) template:\n"
-packer build -var "release_version=${VAR_antarctica_icehack_version}" templates/antarctica-icehack-desktop.json
-printf "\n"
-printf "${FGGreen}<>${FGreset} 'antarctica/icehack' (desktop) built successfully\n"
-
-printf "\n"
 printf "  Processing the 'antarctica/icehack' (cloud) template:\n"
 packer build -var "release_version=${VAR_antarctica_icehack_version}" templates/antarctica-icehack-cloud.json
 printf "\n"
 printf "${FGGreen}<>${FGreset} 'antarctica/icehack' (cloud) built successfully\n"
+
+printf "\n"
+printf "  Processing the 'antarctica/icehack' (desktop) template:\n"
+packer build -var "release_version=${VAR_antarctica_icehack_version}" templates/antarctica-icehack-desktop.json
+printf "\n"
+printf "${FGGreen}<>${FGreset} 'antarctica/icehack' (desktop) built successfully\n"
 
 printf "\n"
 printf "${FGGreen}Builds Complete${FGreset}\n"

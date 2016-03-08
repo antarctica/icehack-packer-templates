@@ -33,6 +33,22 @@
           "checksum": "ace64ab1d95cc01bf6449f8d8d765193a56e7e79"
         }
       ]
+    },
+    {
+      "version": "0.2.0",
+      "providers": [
+        {
+          "name": "virtualbox",
+          "url": "https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/baseboxes/0.2.0/virtualbox.box",
+          "checksum_type": "sha1",
+          "checksum": "82275b4ab8e361eb348777081c5e37f4ae79d228"
+        },
+        {
+          "name": "vmware_desktop",
+          "url": "https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/baseboxes/0.2.0/vmware.box",
+          "checksum": "27095a7174cade60d8ec259f1a174f3386d8bd7f"
+        }
+      ]
     }
   ]
 }

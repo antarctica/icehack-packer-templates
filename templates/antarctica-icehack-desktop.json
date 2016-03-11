@@ -211,7 +211,7 @@
         "echo 'Configuring R'",
         "cd /home/user",
         "cp /tmp/install-irkernel.r /home/user/install-irkernel.r",
-        "R_LIBS_SITE=/home/user/R/library R < /home/user/install-irkernel.r --no-save",
+        "R_LIBS_SITE=/home/user/R/library PATH=/home/user/miniconda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin R < /home/user/install-irkernel.r --no-save",
         "rm /home/user/install-irkernel.r",
         "echo 'export R_LIBS_SITE=/home/user/R/library' >> /home/user/.bashrc"
       ]

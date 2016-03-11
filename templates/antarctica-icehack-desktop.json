@@ -224,6 +224,7 @@
         "provisioning/scripts/icehack/miniconda-configure-update.sh",
         "provisioning/scripts/icehack/install-iris.sh"
         "provisioning/scripts/icehack/install-aws-cli.sh",
+        "provisioning/scripts/icehack/create-workspace-structure.sh"
       ]
     },
     {

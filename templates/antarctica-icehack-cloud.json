@@ -49,6 +49,10 @@
       "destination": "/tmp/install-irkernel.r"
     },
     {
+      "type": "file",
+      "source": "provisioning/files/icehack/install-r-packages.r",
+      "destination": "/tmp/install-r-packages.r"
+    },
       "type": "shell",
       "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
       "scripts": [
@@ -94,9 +98,12 @@
         "echo 'Configuring R'",
         "cd /home/user",
         "cp /tmp/install-irkernel.r /home/user/install-irkernel.r",
+        "cp /tmp/install-r-packages.r /home/user/install-r-packages.r",
         "R_LIBS_SITE=/home/user/R/library PATH=/home/user/miniconda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin R < /home/user/install-irkernel.r --no-save",
+        "R_LIBS_SITE=/home/user/R/library PATH=/home/user/miniconda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin R < /home/user/install-r-packages.r --no-save",
         "rm /home/user/install-irkernel.r",
         "echo 'export R_LIBS_SITE=/home/user/R/library' >> /home/user/.bashrc"
+        "rm /home/user/install-r-packages.r",
       ]
     },
     {

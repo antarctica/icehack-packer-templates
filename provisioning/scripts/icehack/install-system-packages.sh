@@ -6,6 +6,8 @@ sudo apt-get update;
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install libcurl4-openssl-dev;
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install libssl-dev;
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install libzmq3-dev;
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install libgdal-dev;
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install libproj-dev;
 
 # Required for IRIS
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install python-qt4;

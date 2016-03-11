@@ -173,6 +173,11 @@
       "source": "provisioning/files/icehack/aws-credentials.ini",
       "destination": "/tmp/aws-credentials"
     },
+      "type": "file",
+      "source": "provisioning/files/icehack/jupyter-notebook.conf",
+      "destination": "/tmp/jupyter-notebook.conf"
+    },
+    {
       "type": "shell",
       "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
       "scripts": [
@@ -189,6 +194,8 @@
         "provisioning/scripts/icehack/install-system-packages.sh",
         "provisioning/scripts/icehack/install-netcdf-tools.sh",
         "provisioning/scripts/icehack/install-r.sh"
+        "provisioning/scripts/icehack/install-supervisor.sh",
+        "provisioning/scripts/icehack/configure-supervisor.sh"
       ]
     },
     {
@@ -237,6 +244,13 @@
         "echo 'Configuring AWS CLI'",
         "cp /tmp/aws-config /home/user/.aws/config",
         "cp /tmp/aws-credentials /home/user/.aws/credentials"
+      ]
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S bash '{{.Path}}'",
+      "inline": [
+        "service supervisor restart"
       ]
     },
     {

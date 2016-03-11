@@ -163,6 +163,16 @@
       "source": "provisioning/files/icehack/install-r-packages.r",
       "destination": "/tmp/install-r-packages.r"
     },
+    {
+      "type": "file",
+      "source": "provisioning/files/icehack/aws-config.ini",
+      "destination": "/tmp/aws-config"
+    },
+    {
+      "type": "file",
+      "source": "provisioning/files/icehack/aws-credentials.ini",
+      "destination": "/tmp/aws-credentials"
+    },
       "type": "shell",
       "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
       "scripts": [
@@ -206,6 +216,7 @@
       "scripts": [
         "provisioning/scripts/icehack/miniconda-configure-update.sh",
         "provisioning/scripts/icehack/install-iris.sh"
+        "provisioning/scripts/icehack/install-aws-cli.sh",
       ]
     },
     {
@@ -221,6 +232,11 @@
         "rm /home/user/install-irkernel.r",
         "echo 'export R_LIBS_SITE=/home/user/R/library' >> /home/user/.bashrc"
         "rm /home/user/install-r-packages.r",
+        "echo 'Configuring PATH for local pip modules'",
+        "echo 'export PATH=/home/user/.local/bin:$PATH' >> /home/user/.bashrc",
+        "echo 'Configuring AWS CLI'",
+        "cp /tmp/aws-config /home/user/.aws/config",
+        "cp /tmp/aws-credentials /home/user/.aws/credentials"
       ]
     },
     {

@@ -2,6 +2,9 @@
 
 sudo apt-get update;
 
+# Required for data loading
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install python-pip;
+
 # Required for R
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install libcurl4-openssl-dev;
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install libssl-dev;

@@ -12,12 +12,12 @@ Pre-compiled artefacts for the current version of the pre-built environment temp
 
 | Template             | Format               | Provider         | Distribution Method & URL                                                                                                                                                              | Notes                                                                                    |
 | -------------------- | -------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `antarctica/icehack` | Vagrant base box     | VMware Desktop   | [Atlas](https://atlas.hashicorp.com/antarctica/boxes/icehack/versions/0.2.0) / [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/baseboxes/0.2.0/vmware.box)  | Supports VMware Fusion and Workstation [1] [2]                                           |
-| `antarctica/icehack` | Vagrant base box     | VirtualBox       | [Atlas](https://atlas.hashicorp.com/antarctica/boxes/icehack/versions/0.2.0) / [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/baseboxes/0.2.0/virtual.box) | [1] [2]                                                                                  |
-| `antarctica/icehack` | OVA [3]              | VMware Desktop   | [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/ovas/0.2.0/vmware.ova)                                                                                              | Supports VMware Fusion, Workstation and ESXi                                             |
-| `antarctica/icehack` | OVA [3]              | VirtualBox       | [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/ovas/0.2.0/virtualbox.ova)                                                                                          | -                                                                                        |
-| `antarctica/icehack` | DigitalOcean Image   | DigitalOcean     | [Atlas](https://atlas.hashicorp.com/antarctica/artifacts/icehack/types/digitalocean.droplet/3)                                                                                         | Available only in the `lon1` region, includes private networking but not backups [1] [4] |
-| `antarctica/icehack` | Amazon Machine Image | EC2              | [Atlas](https://atlas.hashicorp.com/antarctica/artifacts/icehack/types/amazon.ami/3)                                                                                                   | Available only in the `eu-west-1` region                                                 |
+| `antarctica/icehack` | Vagrant base box     | VMware Desktop   | [Atlas](https://atlas.hashicorp.com/antarctica/boxes/icehack/versions/0.3.0) / [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/baseboxes/0.3.0/vmware.box)  | Supports VMware Fusion and Workstation [1] [2]                                           |
+| `antarctica/icehack` | Vagrant base box     | VirtualBox       | [Atlas](https://atlas.hashicorp.com/antarctica/boxes/icehack/versions/0.3.0) / [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/baseboxes/0.3.0/virtual.box) | [1] [2]                                                                                  |
+| `antarctica/icehack` | OVA [3]              | VMware Desktop   | [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/ovas/0.3.0/vmware.ova)                                                                                              | Supports VMware Fusion, Workstation and ESXi                                             |
+| `antarctica/icehack` | OVA [3]              | VirtualBox       | [HTTPS](https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/ovas/0.3.0/virtualbox.ova)                                                                                          | -                                                                                        |
+| `antarctica/icehack` | DigitalOcean Image   | DigitalOcean     | [Atlas](https://atlas.hashicorp.com/antarctica/artifacts/icehack/types/digitalocean.droplet/4)                                                                                         | Available only in the `lon1` region, includes private networking but not backups [1] [4] |
+| `antarctica/icehack` | Amazon Machine Image | EC2              | [Atlas](https://atlas.hashicorp.com/antarctica/artifacts/icehack/types/amazon.ami/4)                                                                                                   | Available only in the `eu-west-1` region                                                 |
 
 The recommended method to use DigitalOcean images is through [Terraform](https://www.terraform.io).
 
@@ -88,7 +88,7 @@ See the *pre-built artefacts* section for distribution/download links.
 
 | Template Name        | Template Version | Distribution Name                | Distribution Version | Distribution Architecture | Notes   |
 | -------------------- | ---------------- | -------------------------------- | -------------------- | ------------------------- | ------- |
-| `antarctica/icehack` | 0.2.0            | [Ubuntu](http://www.ubuntu.com/) | 14.04 LTS (Trusty)   | AMD 64                    | [1]     |
+| `antarctica/icehack` | 0.3.0            | [Ubuntu](http://www.ubuntu.com/) | 14.04 LTS (Trusty)   | AMD 64                    | [1]     |
 
 Note: As using the `/` character is problematic with file systems an alternative template using a `-` character is used
 instead. For example a template named `antarctica/trusty` would alternatively be referred to as `antarctica-trusty`.
@@ -100,11 +100,13 @@ instead. For example a template named `antarctica/trusty` would alternatively be
 Some customisations are made to these Operating systems using provisioning scripts and installation options, these are
 summarised below:
 
-| Template Name(s)     | Since       | Customisation         | Rational                                                          | Applicable Artefact Formats | Notes |
-| -------------------- | ----------- | --------------------- | ----------------------------------------------------------------- | --------------------------- | ----- |
-| `antarctica/icehack` | 0.1.0       | Default users         | For easier logins using passwords rather than public/private keys | *ALL*                       | -     |
-| `antarctica/icehack` | 0.1.1       | Jupyter firewall rule | To allow access to Jupyter notebook application by default        | *ALL*                       | -     |
-| `antarctica/icehack` | 0.2.0       | Adding R language     | For running R flavoured notebooks through Jupyter                 | *ALL*                       | -     | 
+| Template Name(s)     | Since       | Customisation            | Rational                                                          | Applicable Artefact Formats | Notes |
+| -------------------- | ----------- | ------------------------ | ----------------------------------------------------------------- | --------------------------- | ----- |
+| `antarctica/icehack` | 0.1.0       | Default users            | For easier logins using passwords rather than public/private keys | *ALL*                       | -     |
+| `antarctica/icehack` | 0.1.1       | Jupyter firewall rule    | To allow access to Jupyter notebook application by default        | *ALL*                       | -     |
+| `antarctica/icehack` | 0.2.0       | Adding R language        | For running R flavoured notebooks through Jupyter                 | *ALL*                       | -     | 
+| `antarctica/icehack` | 0.3.0       | Daemonising Jupyter      | To prevent users having to have a terminal running to use Jupyter | *ALL*                       | -     |
+| `antarctica/icehack` | 0.3.0       | Reverse proxying Jupyter | To expose Jupyter on a conventional port and utilise encryption   | *ALL*                       | -     |
 
 Note: The above list does not include customisations made by the Bento project or the BAS Base Images project.
 

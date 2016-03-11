@@ -2,6 +2,10 @@
 
 sudo apt-get update;
 
+# Required generally
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install git;
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install htop;
+
 # Required for data loading
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install python-pip;
 

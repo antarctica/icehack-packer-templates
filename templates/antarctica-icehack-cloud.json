@@ -81,7 +81,7 @@
         "provisioning/scripts/icehack/users.sh",
         "provisioning/scripts/icehack/install-system-packages.sh",
         "provisioning/scripts/icehack/install-netcdf-tools.sh",
-        "provisioning/scripts/icehack/install-r.sh"
+        "provisioning/scripts/icehack/install-r.sh",
         "provisioning/scripts/icehack/install-nginx.sh",
         "provisioning/scripts/icehack/install-supervisor.sh",
         "provisioning/scripts/icehack/configure-nginx.sh",
@@ -105,7 +105,7 @@
         "cd /home/user",
         "./miniconda.sh -b -p /home/user/miniconda",
         "rm /home/user/miniconda.sh",
-        "echo 'PATH=/home/user/miniconda/bin:$PATH' >> /home/user/.bashrc"
+        "echo 'export PATH=/home/user/miniconda/bin:$PATH' >> /home/user/.bashrc"
       ]
     },
     {
@@ -113,7 +113,7 @@
       "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E -H -u user bash '{{.Path}}'",
       "scripts": [
         "provisioning/scripts/icehack/miniconda-configure-update.sh",
-        "provisioning/scripts/icehack/install-iris.sh"
+        "provisioning/scripts/icehack/install-iris.sh",
         "provisioning/scripts/icehack/install-aws-cli.sh",
         "provisioning/scripts/icehack/create-workspace-structure.sh"
       ]
@@ -129,8 +129,8 @@
         "R_LIBS_SITE=/home/user/R/library PATH=/home/user/miniconda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin R < /home/user/install-irkernel.r --no-save",
         "R_LIBS_SITE=/home/user/R/library PATH=/home/user/miniconda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin R < /home/user/install-r-packages.r --no-save",
         "rm /home/user/install-irkernel.r",
-        "echo 'export R_LIBS_SITE=/home/user/R/library' >> /home/user/.bashrc"
         "rm /home/user/install-r-packages.r",
+        "echo 'export R_LIBS_SITE=/home/user/R/library' >> /home/user/.bashrc",
         "echo 'Configuring PATH for local pip modules'",
         "echo 'export PATH=/home/user/.local/bin:$PATH' >> /home/user/.bashrc",
         "echo 'Configuring AWS CLI'",

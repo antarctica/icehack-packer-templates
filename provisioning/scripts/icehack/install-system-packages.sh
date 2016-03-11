@@ -2,6 +2,9 @@
 
 sudo apt-get update;
 
+# Required for using PPAs for other packages
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common;
+
 # Required generally
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install git;
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install htop;

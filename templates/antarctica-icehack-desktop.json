@@ -145,11 +145,6 @@
   "provisioners": [
     {
       "type": "file",
-      "source": "provisioning/files/icehack/jupyter.rules",
-      "destination": "/tmp/jupyter.rules"
-    },
-    {
-      "type": "file",
       "source": "provisioning/files/icehack/dot-Rprofile",
       "destination": "/tmp/dot-Rprofile"
     },
@@ -173,6 +168,17 @@
       "source": "provisioning/files/icehack/aws-credentials.ini",
       "destination": "/tmp/aws-credentials"
     },
+    {
+      "type": "file",
+      "source": "provisioning/files/icehack/nginx.conf",
+      "destination": "/tmp/nginx.conf"
+    },
+    {
+      "type": "file",
+      "source": "provisioning/files/icehack/nginx-site.conf",
+      "destination": "/tmp/nginx-default.conf"
+    },
+    {
       "type": "file",
       "source": "provisioning/files/icehack/jupyter-notebook.conf",
       "destination": "/tmp/jupyter-notebook.conf"
@@ -189,12 +195,14 @@
         "provisioning/scripts/common/vagrant.sh",
         "provisioning/scripts/common/vmtools.sh",
         "provisioning/scripts/ubuntu/regenerate-host-keys.sh",
-        "provisioning/scripts/icehack/firewall.sh",
         "provisioning/scripts/icehack/users.sh",
         "provisioning/scripts/icehack/install-system-packages.sh",
         "provisioning/scripts/icehack/install-netcdf-tools.sh",
         "provisioning/scripts/icehack/install-r.sh"
+        "provisioning/scripts/icehack/install-nginx.sh",
         "provisioning/scripts/icehack/install-supervisor.sh",
+        "provisioning/scripts/icehack/configure-nginx.sh",
+        "provisioning/scripts/icehack/configure-firewall.sh",
         "provisioning/scripts/icehack/configure-supervisor.sh"
       ]
     },

@@ -1,4 +1,0 @@
-[jupyter-notebook]
-title=Jupyter Notebook
-description=Open source interactive data science and scientific computing across over 40 programming languages
-ports=9000,49152:65535/tcp

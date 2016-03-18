@@ -14,6 +14,7 @@
         {
           "name": "vmware_desktop",
           "url": "https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/basboxes/0.1.0/vmware.box",
+          "checksum_type": "sha1",
           "checksum": "ce918fdfa7c0e07b27c8088baeb9326c19672411"
         }
       ]
@@ -30,6 +31,7 @@
         {
           "name": "vmware_desktop",
           "url": "https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/baseboxes/0.1.1/vmware.box",
+          "checksum_type": "sha1",
           "checksum": "ace64ab1d95cc01bf6449f8d8d765193a56e7e79"
         }
       ]
@@ -46,7 +48,25 @@
         {
           "name": "vmware_desktop",
           "url": "https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/baseboxes/0.2.0/vmware.box",
+          "checksum_type": "sha1",
           "checksum": "27095a7174cade60d8ec259f1a174f3386d8bd7f"
+        }
+      ]
+    },
+    {
+      "version": "0.3.0",
+      "providers": [
+        {
+          "name": "virtualbox",
+          "url": "https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/baseboxes/0.3.0/virtualbox.box",
+          "checksum_type": "sha1",
+          "checksum": "956aa4cbb9f78f0aa2f7cb7a1ebc86743aa6f6dd"
+        },
+        {
+          "name": "vmware_desktop",
+          "url": "https://s3-eu-west-1.amazonaws.com/bas-icehack/environment/vagrant/baseboxes/0.3.0/vmware.box",
+          "checksum_type": "sha1",
+          "checksum": "741e27970bafae0d2222be75c70568302ef1ee95"
         }
       ]
     }

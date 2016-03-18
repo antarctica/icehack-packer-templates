@@ -145,11 +145,6 @@
   "provisioners": [
     {
       "type": "file",
-      "source": "provisioning/files/icehack/jupyter.rules",
-      "destination": "/tmp/jupyter.rules"
-    },
-    {
-      "type": "file",
       "source": "provisioning/files/icehack/dot-Rprofile",
       "destination": "/tmp/dot-Rprofile"
     },
@@ -157,6 +152,36 @@
       "type": "file",
       "source": "provisioning/files/icehack/install-irkernel.r",
       "destination": "/tmp/install-irkernel.r"
+    },
+    {
+      "type": "file",
+      "source": "provisioning/files/icehack/install-r-packages.r",
+      "destination": "/tmp/install-r-packages.r"
+    },
+    {
+      "type": "file",
+      "source": "provisioning/files/icehack/aws-config.ini",
+      "destination": "/tmp/aws-config"
+    },
+    {
+      "type": "file",
+      "source": "provisioning/files/icehack/aws-credentials.ini",
+      "destination": "/tmp/aws-credentials"
+    },
+    {
+      "type": "file",
+      "source": "provisioning/files/icehack/nginx.conf",
+      "destination": "/tmp/nginx.conf"
+    },
+    {
+      "type": "file",
+      "source": "provisioning/files/icehack/nginx-site.conf",
+      "destination": "/tmp/nginx-default.conf"
+    },
+    {
+      "type": "file",
+      "source": "provisioning/files/icehack/jupyter-notebook.conf",
+      "destination": "/tmp/jupyter-notebook.conf"
     },
     {
       "type": "shell",
@@ -170,11 +195,15 @@
         "provisioning/scripts/common/vagrant.sh",
         "provisioning/scripts/common/vmtools.sh",
         "provisioning/scripts/ubuntu/regenerate-host-keys.sh",
-        "provisioning/scripts/icehack/firewall.sh",
         "provisioning/scripts/icehack/users.sh",
         "provisioning/scripts/icehack/install-system-packages.sh",
         "provisioning/scripts/icehack/install-netcdf-tools.sh",
-        "provisioning/scripts/icehack/install-r.sh"
+        "provisioning/scripts/icehack/install-r.sh",
+        "provisioning/scripts/icehack/install-nginx.sh",
+        "provisioning/scripts/icehack/install-supervisor.sh",
+        "provisioning/scripts/icehack/configure-nginx.sh",
+        "provisioning/scripts/icehack/configure-firewall.sh",
+        "provisioning/scripts/icehack/configure-supervisor.sh"
       ]
     },
     {
@@ -193,7 +222,7 @@
         "cd /home/user",
         "./miniconda.sh -b -p /home/user/miniconda",
         "rm /home/user/miniconda.sh",
-        "echo 'PATH=/home/user/miniconda/bin:$PATH' >> /home/user/.bashrc"
+        "echo 'export PATH=/home/user/miniconda/bin:$PATH' >> /home/user/.bashrc"
       ]
     },
     {
@@ -201,7 +230,9 @@
       "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E -H -u user bash '{{.Path}}'",
       "scripts": [
         "provisioning/scripts/icehack/miniconda-configure-update.sh",
-        "provisioning/scripts/icehack/install-iris.sh"
+        "provisioning/scripts/icehack/install-iris.sh",
+        "provisioning/scripts/icehack/install-aws-cli.sh",
+        "provisioning/scripts/icehack/create-workspace-structure.sh"
       ]
     },
     {
@@ -211,9 +242,24 @@
         "echo 'Configuring R'",
         "cd /home/user",
         "cp /tmp/install-irkernel.r /home/user/install-irkernel.r",
-        "R_LIBS_SITE=/home/user/R/library R < /home/user/install-irkernel.r --no-save",
+        "cp /tmp/install-r-packages.r /home/user/install-r-packages.r",
+        "R_LIBS_SITE=/home/user/R/library PATH=/home/user/miniconda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin R < /home/user/install-irkernel.r --no-save",
+        "R_LIBS_SITE=/home/user/R/library PATH=/home/user/miniconda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin R < /home/user/install-r-packages.r --no-save",
         "rm /home/user/install-irkernel.r",
-        "echo 'export R_LIBS_SITE=/home/user/R/library' >> /home/user/.bashrc"
+        "rm /home/user/install-r-packages.r",
+        "echo 'export R_LIBS_SITE=/home/user/R/library' >> /home/user/.bashrc",
+        "echo 'Configuring PATH for local pip modules'",
+        "echo 'export PATH=/home/user/.local/bin:$PATH' >> /home/user/.bashrc",
+        "echo 'Configuring AWS CLI'",
+        "cp /tmp/aws-config /home/user/.aws/config",
+        "cp /tmp/aws-credentials /home/user/.aws/credentials"
+      ]
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S bash '{{.Path}}'",
+      "inline": [
+        "service supervisor restart"
       ]
     },
     {
